@@ -108,3 +108,71 @@ laoxie
     ```
 
     * >
+
+## 公钥与私钥
+* 私钥要自己保存
+* 公钥可以公开
+
+## 模块化开发
+
+* 什么是模块化
+> 把一个庞大的东西分成若干小块，并进行组合
+
+* 模块化开发的好处
+    * 分工更简单
+    * 开发更简单
+    * 维护更容易
+    ....
+
+* NodeJS如何实现模块
+    * 引入
+        * require()
+    * 导出（暴露）
+        * module.exports
+        * exports
+    * 模块化分类
+        * 内置模块
+        * 文件模块
+        * 自定义模块
+        * 第三方模块
+* 模块化开发规范
+    * commonJS：nodejs
+    * AMD：require.js
+    * CMD：sea.js
+    * ES Module
+        * javascript这门语言的模块化开发
+        * 引入：import
+        * 导出：export
+* 面试题：
+    * commonJS、AMD、CMD有什么区别
+
+
+   require(['jquery'],function($){
+
+   })
+
+007
+996.ICU
+40h
+ant-996
+Vue
+创业公司：大小周
+
+
+## 第三方模块
+
+### 使用步骤
+1. 安装 `npm install xxx --save-dev`
+2. 引入 `const xxx = require('xxx')`
+3. 使用模块
+
+
+## 跨域
+* 为什么前端会有跨域限制
+    * 安全因素
+        * js为客户端语言
+* 解决方案
+    * jsonp
+    * CORS（跨域资源共享Cross-Origin-Resource-Sharing）
+    * 服务器代理
+        

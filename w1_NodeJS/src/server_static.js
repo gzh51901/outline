@@ -5,6 +5,7 @@
 */
 // 引入内置模块
 const http = require('http');
+console.log(http)
 
 // 文件处理（读取/写入）
 const fs = require('fs');
