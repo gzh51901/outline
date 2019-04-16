@@ -101,7 +101,7 @@ module.exports = hello;
         return 18
     }
 
-    // 对外博陆接口
+    // 对外暴露接口
     exports.setName = setName;
     exports.setAge = setAge;
 
