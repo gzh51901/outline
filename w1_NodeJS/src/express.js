@@ -1,3 +1,9 @@
+/**
+ * 路由
+ * 数据接口
+ * 静态资源服务器
+ */
+
 // 引入express
 const express = require('express');
 

@@ -1,3 +1,5 @@
+#day1-1
+
 谢进荣
 
 老谢
@@ -176,3 +178,81 @@ Vue
     * CORS（跨域资源共享Cross-Origin-Resource-Sharing）
     * 服务器代理
         
+
+
+# day1-2
+
+## 面试题
+
+* webStorage(sessionStorage & localStorage) + cookie
+    * getItem()
+    * setItem()
+    * cookie
+        * expires
+        * path
+* 模块化开发
+    * AMD           require.js
+    * CMD           sea.js
+    * commonJS      node.js
+    * ES Module     es6
+    
+
+## 复习
+* 技能
+    * 写PPT
+    * 发邮件
+        * 发送
+        * 抄送
+        * 邮件格式
+    * 思维导图
+    * 甘特图
+* 回顾
+    * 复习二阶段的知识
+        * http
+        * url
+        * path
+        * querystring
+        * fs
+    * 模块化开发
+        * 分类
+            * 原生模块
+            * 文件模块
+            * 自定义模块
+                * module.exports
+                * exports
+                * require()
+            * 第三方模块
+        * 常用第三方模块
+            * request
+                * 服务器代理
+                * 爬虫
+            * cheerio
+            * express
+
+* ajax请求
+    * let xhr = new XMLHttpRequest()
+    * xhr.onload = ()=>{}
+    * xhr.open('get',xxx?xx=xx,true);
+    * xhr.send()
+
+    xhr.abort()
+
+
+## Stream文件流
+>文件在内存中的状态（液体）
+* gulp.src('../xx/xx.js') 返回文件流
+    .pipe()
+
+
+
+## day1-3
+
+### 面试题
+* 链式调用的原理:return this
+```js
+    $('.box').css('color','#58bc58').attr('data-idx',10).html('要让生活过得去，头上哪能没点绿');
+    $('.box').css('color')
+```
+* get和post的区别
+* async & await  （ES7，ECMAScript2016)（ES6，ECMAScript2015）
+
