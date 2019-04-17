@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>商品详情</h1>
+    <script>
+        let xhr = new XMLHttpRequest();
+        // hard code硬编码
+        xhr.onload = ()=>{
+            console.log(xhr.responseText);
+        }
+        xhr.open('post','/goods',true);
+        xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+        // xhr.setRequestHeader('Content-Type','application/json');
+        xhr.send('data={"type":"computer","qty":100}');
+    </script>
+</body>
+</html>

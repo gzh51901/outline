@@ -255,4 +255,27 @@ Vue
 ```
 * get和post的区别
 * async & await  （ES7，ECMAScript2016)（ES6，ECMAScript2015）
+* 原型链的理解
+    * 什么是原型链：从当前对象到Object.prototype间的链条
+    * js一切皆对象
+    * 属性的访问规则
+* 如何git冲突
+    * code review
 
+* 错误提示信息
+    * can not set the property xx of undefined (a.xx)
+
+
+### 知识点
+* 请求类型：get（查）,post(增),put/patch（改）,delete（删）,options(预请求)
+* 路由：访问不同的地址相应不同的信息
+    * 静态资源
+    * 数据接口
+* 模块化commonjs
+    * exports/module.exports
+    * require()
+
+
+* ajax请求
+
+* promise & async & await
