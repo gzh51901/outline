@@ -13,9 +13,10 @@ exports.query = sql=>{
     return new Promise((resolve,reject)=>{
         pool.query(sql,(err, results, fields)=>{
             if(err){
-                reject('查询数据库错误');
+                return reject(err);
             }
-    
+            
+            console.log(err,results,fields)
             resolve(results[0]);
         })
     });

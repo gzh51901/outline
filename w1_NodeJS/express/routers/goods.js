@@ -36,12 +36,12 @@ const {formatData} = require('../utils');
 
 // 添加商品
 // /goods
-Router.post('/',function(req,res){
+Router.post('/',async (req,res)=>{
     let keys = ''
     let values = ''
     for(let key in req.body){
         keys += key + ',';
-        values += req.body[key] + ',';
+        values += '"' + req.body[key] + '",';
     }
 
     // 删除多余逗号
@@ -107,7 +107,7 @@ Router.route('/:id')
 
 })
 
-.delete(function(req,res){
+.delete(async (req,res)=>{
     let {id} = req.params;
     let sql = `delete from goods where id=${id}`;
 
@@ -120,8 +120,24 @@ Router.route('/:id')
     
 })
 
-.put(function(req,res){
-    res.send('修改商品信息');
+// 修改商品
+.put(async (req,res)=>{//req.body=>{price,size,nmae}
+    let {id} = req.params;
+
+    // 循环传入的参数
+    let str = ''
+    for(let key in req.body){
+        str += key + '="' + req.body[key] + '",'
+    }
+    str = str.slice(0,-1);
+    let sql = `update goods set ${str} where id=${id}`;
+
+    try{
+        let data = await db.query(sql);
+        res.send(formatData());
+    }catch(err){
+        res.send(formatData({msg:err,status:400}));
+    }
 })
 
 module.exports = Router;

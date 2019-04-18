@@ -40,6 +40,7 @@ const routers = require('./routers');
 // });
 
 
+
 // 内置中间件：利用中间件实现静态资源服务器
 app.use(express.static('./'));
 
