@@ -278,4 +278,41 @@ Vue
 
 * ajax请求
 
-* promise & async & await
+* promise & async & await(ES7,ECMAScript2016)
+
+    async function show(){
+        return 666
+    }
+
+    await:等待一个promise对象的返回值
+    await必须写在async函数中
+    function(){
+        let res = await show()
+        console.log(res)
+    }
+    
+
+## day1-4
+### 面试题:
+* canvas的应用场景
+    * 游戏
+    * 数据可视化
+        * echarts
+        * hicharts
+* html5新标签
+    * 有语义的标签
+    * 会DIV+CSS布局(low) -> 对语义化有一定的理解
+
+### 复习
+* express
+    * 创建服务器: const app = express()
+    * 监听端口:app.listen(1901,()=>{})
+    * 静态资源服务:app.use(express.static())
+    * 路由(数据接口)
+        * app.use(express.static())
+        * app.use(routers)
+
+* 中间件: function(req,res,next){}
+    * 使用中间:`app.use([path],...mw)`
+
+

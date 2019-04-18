@@ -9,19 +9,7 @@ var pool  = mysql.createPool({
     multipleStatements: true
 });
 
-
-exports.create = ()=>{
-
-}
-exports.delete = ()=>{
-
-}
-
-exports.update = ()=>{
-
-}
-
-exports.find = (sql)=>{
+exports.query = sql=>{
     return new Promise((resolve,reject)=>{
         pool.query(sql,(err, results, fields)=>{
             if(err){
@@ -29,8 +17,6 @@ exports.find = (sql)=>{
             }
     
             resolve(results[0]);
-    
-        
         })
     });
     

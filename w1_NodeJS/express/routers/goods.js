@@ -10,6 +10,7 @@ const Router = express.Router();
 // const mysql = require('mysql');
 
 const db = require('../db');
+const {formatData} = require('../utils');
 
 // 创建连接对象
 // var connection = mysql.createConnection({
@@ -33,10 +34,44 @@ const db = require('../db');
 //     multipleStatements: true
 // });
 
+// 添加商品
+// /goods
+Router.post('/',function(req,res){
+    let keys = ''
+    let values = ''
+    for(let key in req.body){
+        keys += key + ',';
+        values += req.body[key] + ',';
+    }
+
+    // 删除多余逗号
+    keys = keys.slice(0,-1);
+    values = values.slice(0,-1);
+
+    let sql = `insert into goods(${keys}) values(${values})`;
+
+    try{
+        let data = await db.query(sql);
+        data = formatData({
+            data,
+            msg:'数据插入成功'
+        })
+        res.send(data);
+    }catch(err){
+        let data = formatData({
+            status:400,
+            msg:err
+        })
+        res.send(data);
+    }
+})
+
 
 // 获取商品信息
 // /goods/abc
-Router.get('/:id',async (req,res)=>{
+Router.route('/:id')
+
+.get(async (req,res)=>{
    
 
     // 根据id查询商品信息
@@ -61,8 +96,10 @@ Router.get('/:id',async (req,res)=>{
     // });
 
     try{
-        let data = await db.find(sql);
-        res.send(data);
+        let data = await db.query(sql);
+        res.send(formatData({
+            data
+        }));
     }catch(err){
         res.send(err);
     }
@@ -70,16 +107,20 @@ Router.get('/:id',async (req,res)=>{
 
 })
 
-Router.post('/',function(req,res){
-    console.log(req.params,req.query,req.body)
-    res.send('添加商品信息');
+.delete(function(req,res){
+    let {id} = req.params;
+    let sql = `delete from goods where id=${id}`;
+
+    try{
+        let data = await db.query(sql);
+        res.send(formatData());
+    }catch(err){
+        res.send(err);
+    }
+    
 })
 
-Router.delete('/',function(req,res){
-    res.send('删除商品信息');
-})
-
-Router.put('/',function(req,res){
+.put(function(req,res){
     res.send('修改商品信息');
 })
 
