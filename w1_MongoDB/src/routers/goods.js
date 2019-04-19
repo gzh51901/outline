@@ -9,7 +9,7 @@ const Router = express.Router();
 
 // const mysql = require('mysql');
 
-const {create} = require('../db');
+const db = require('../db');
 const {formatData} = require('../utils');
 
 const colName = 'goods';
@@ -20,13 +20,12 @@ Router.post('/',async (req,res)=>{
 
     let result;
     try{
-        result = await create(colName,data);
+        result = await db.create(colName,data);
         result = formatData({data:result})
     }catch(err){
         result = formatData({status:400,msg:err})
     }
-    
-    console.log('end:',result)
+
     res.send(result);
 
 })
@@ -36,17 +35,51 @@ Router.post('/',async (req,res)=>{
 Router.route('/:id')
 
 .get(async (req,res)=>{
-    res.send('query');
+    let {id} = req.params;
+    
+    let result;
+    try{
+        result = await db.find(colName,{_id:id})
+        result = formatData({data:result})
+    }catch(err){
+        result = formatData({status:400,msg:err})
+    }
+    res.send(result);
 })
 
 .delete(async (req,res)=>{
+    let {id} = req.params;
     
-    res.send('delete');
+    let result;
+    try{
+        result = await db.delete(colName,{_id:id})
+        result = formatData({data:result})
+    }catch(err){
+        result = formatData({status:400,msg:err})
+    }
+    res.send(result);
 })
 
 // 修改商品
 .put(async (req,res)=>{//req.body=>{price,size,nmae}
-    res.send('modified');
+
+    let {id} = req.params;
+
+    let data = {};
+
+    // 遍历修改属性，并写入查询
+    for(let key in req.body){
+        data[key] = req.body[key];
+    }
+    
+    let result;
+    try{
+        result = await db.update(colName,{_id:id},data);
+        result = formatData({data:result})
+    }catch(err){
+        result = formatData({status:400,msg:err})
+    }
+    res.send(result);
 })
 
 module.exports = Router;
