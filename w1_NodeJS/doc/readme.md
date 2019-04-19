@@ -316,3 +316,37 @@ Vue
     * 使用中间:`app.use([path],...mw)`
 
 
+*  Restful api
+    * get       /goods        获取所有商品信息
+    * post      /goods        添加商品
+    * get       /goods/:id    获取某个商品信息
+    * put       /goods/:id    修改某个商品信息
+    * delete    /goods/:id    删除某个商品信息
+
+* 数据库类型
+    * 关系型数据库      Oracle(甲骨文)  MySQL(MariaDB) SQLServer(微软)
+    * 非关系型数据库    MongoDB
+
+            关系型数据库                非关系型数据库
+数据库       database                   database
+表/集合      table                      collection
+数据         row                        document
+
+
+## day1-5
+* mySQL的封装与测试（postman）
+* Restful api规范
+    * url
+    * 请求类型
+        * 增：post
+        * 删：delete
+        * 改：put/patch
+        * 查：get
+        * 预请求：options
+* Postman的使用
+* 环境变量
+* MongoDB
+    * 安装
+
+### 在nodejs中操作MongoDB
+* mongodb
