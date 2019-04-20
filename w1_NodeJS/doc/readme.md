@@ -350,3 +350,57 @@ Vue
 
 ### 在nodejs中操作MongoDB
 * mongodb
+* mongose
+
+
+## day1-6
+
+### 面试题
+* 从输入url地址到页面呈现经历的过程
+    1. 域名解析: 把ip和域名关联起来的操作
+    2. 请求与响应：客户端（浏览器）与服务端交互的过程
+    3. 客户端渲染：浏览器解析html,css,js、图片...等文件的过程
+* 如何是指一个对象的属性为只读
+    ```js
+        let obj = {name:'lemon',age:36}
+        
+        // 属性特性（值属性） -> 存储器属性getter&setter
+        // configurable  可配置性
+        // writable      可写性
+        // enumerable    可枚举性（是否可遍历，是否可循环）
+        // value
+        Object.defineProperty(obj,'age',{
+            writable:false, // 可写性
+            value:36
+        })
+
+        obj.age = 17;
+    ```
+
+### 复习
+* MongoDB
+    * 增删改查
+
+
+### 课程内容
+* 前后端分离
+    * 术业有专攻
+    * 前端
+        * 知识点：html,css,js
+        * 用户体验
+    * 后端
+        * 数据库操作
+        * 业务逻辑
+        * 写接口
+    * SEO ： 搜索引擎优化
+        * 搜索引擎爬取页面内容并呈现到它的页面（爬虫）
+        * 搜索引擎只能爬取后端第一次响应的内容
+* 前后端不分离
+    * 前后端混写
+
+* 多数网站的做法
+    * 某些首页不分离
+    * 服务器渲染：SSR
+    * 客户端渲染：BSR
+
+* HTML,CCS,JS三者分离

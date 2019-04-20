@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>注册</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+</head>
+
+<body>
+    <div class="container-fluid pt-5">
+        <h1 class="pb-2">注册</h1>
+        <div class="form-group">
+            <label for="phone">手机号</label>
+            <input type="tel" class="form-control" id="phone" placeholder="请输入11位手机号">
+            <small id="phoneHelp" class="form-text text-muted">手机号格式不正确</small>
+        </div>
+        <div class="form-group">
+            <label for="password">密码</label>
+            <input type="password" class="form-control" id="password" placeholder="Password">
+        </div>
+        <button type="submit" class="btn btn-success btnReg">免费注册</button>
+    </div>
+    <script>
+        (()=>{
+            // 避免全局环境污染
+            let btnReg = document.querySelector('.btnReg');
+            let phone = document.querySelector('#phone');
+            let password = document.querySelector('#password');
+
+            btnReg.onclick = ()=>{
+                let _phone = phone.value;
+                let _password = password.value;
+
+                let xhr = new XMLHttpRequest();
+                xhr.onload = ()=>{
+                    console.log(xhr.responseText)
+                }
+                xhr.open('post','/reg',true);
+                xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+                xhr.send(`phone=${_phone}&password=${_password}`);
+            }
+        })();
+    </script>
+</body>
+
+</html>

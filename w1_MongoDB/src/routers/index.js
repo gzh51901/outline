@@ -4,6 +4,7 @@ const Router = express.Router();
 const goodsRouter = require('./goods');
 const cartRouter = require('./cart');
 const listRouter = require('./list');
+const regRouter = require('./reg');
 
 
 
@@ -14,5 +15,6 @@ Router.use(express.json(),express.urlencoded({ extended: false }));
 Router.use('/goods',goodsRouter);
 Router.use('/cart',cartRouter);
 Router.use('/list',listRouter);
+Router.use('/reg',regRouter);
 
 module.exports = Router;
