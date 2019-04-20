@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>用户中心</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+</head>
+
+<body>
+    <div class="container-fluid">
+        <h1>用户中心</h1>
+        <!-- <form action="/upload" method="post" enctype="multipart/form-data"> -->
+        <div class="form-group">
+            <label for="touxiang">头像</label>
+            <input type="file" name="touxiang" class="form-control" id="touxiang" placeholder="上传头像">
+        </div>
+        <button class="btn btn-success btnUpload">上传</button>
+        <!-- </form> -->
+
+        <div class="form-group mt-5">
+            <label for="goods">商品</label>
+            <input type="file" name="goods" class="form-control" id="goods" placeholder="商品上传" multiple>
+        </div>
+        <button class="btn btn-success btnUploads">上传</button>
+    </div>
+    <script>
+        (() => {
+            let touxiang = document.querySelector('#touxiang')
+            let goods = document.querySelector('#goods')
+            let btnUpload = document.querySelector('.btnUpload')
+            let btnUploads = document.querySelector('.btnUploads')
+            // formData
+            // 获取用户id
+            let id = localStorage.getItem('userid')
+
+
+            console.log(touxiang.files)
+            btnUpload.onclick = () => {
+                let data = new FormData();
+                data.set('touxiang', touxiang.files[0])
+                data.set('userid', id);
+
+                console.log(touxiang.files)
+
+                let xhr = new XMLHttpRequest();
+                xhr.open('post', '/upload/touxiang', true);
+                // xhr.setRequestHeader('Content-Type','multipart/form-data');
+                xhr.send(data)
+            }
+
+            btnUploads.onclick = () => {
+                // 上传多张图片
+                let data = new FormData();
+
+                for(let i=0;i<goods.files.length;i++){
+                    data.append('goods', goods.files[i])
+                }
+                console.log(goods.files);
+                data.set('userid', id);
+
+                // console.log(touxiang.files)
+
+                let xhr = new XMLHttpRequest();
+                xhr.open('post', '/upload/goods', true);
+                xhr.send(data)
+            }
+
+        })();
+    </script>
+</body>
+
+</html>

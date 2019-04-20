@@ -404,3 +404,47 @@ Vue
     * 客户端渲染：BSR
 
 * HTML,CCS,JS三者分离
+
+### 面试题
+* 快速获取元素内容的方式
+```js
+    // 初级
+    let str = '';
+    for(var i=0;i<divs.length;i++){
+        str += divs[i].innerText;
+    }
+
+    // 中级
+    let str = '';
+    divs.forEach(div=>{
+        str += div.innerText
+    })
+    
+    // 高级
+    Array.from(divs).map(div=>div.innerText).join('')
+    [...divs].map(div=>div.innerText).join('')
+
+    // 终极
+    Array.prototype.map.call(divs,div=>div.innerText).join('')
+```
+
+* 对象obj的复制
+```js
+    //for...in
+    let newObj = {}
+    for(let key in obj){
+        newObj[key] = obj[key]
+    }
+
+    // Object.assign
+    Object.assign({},obj);
+
+    // ...
+    {...obj}
+
+    // JSON
+    JSON.parse(JSON.stringfiy(obj));
+
+    // 递归
+```
+
