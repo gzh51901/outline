@@ -8,6 +8,7 @@ const listRouter = require('./list');
 const regRouter = require('./reg');
 const loginRouter = require('./login');
 const uploadRouter = require('./upload');
+const proxyRouter = require('./proxy');
 
 
 
@@ -21,5 +22,6 @@ Router.use('/list',listRouter);
 Router.use('/reg',regRouter);
 Router.use('/upload',uploadRouter);
 Router.use('/login',loginRouter);
+Router.use('/proxy',proxyRouter);
 
 module.exports = Router;
