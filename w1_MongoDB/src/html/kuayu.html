@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>跨域解决方案</title>
+</head>
+<body>
+    <h1>跨域解决方案</h1>
+    <script>
+        (()=>{
+            /**
+             * 跨域解决方案(当前服务器：http://localhost:1901，数据服务器：http://localhost:19011)
+             * 1.jsonp
+                * 客户端：利用script标签发起请求，并传输全局函数名
+                * 服务端：接收全局函数名，并返回函数执行的js代码
+            */
+    
+            // 跨域
+            // let xhr = new XMLHttpRequest();
+            // xhr.onload = ()=>{
+            //     console.log(xhr.responseText);
+            // }
+            // xhr.open('get','http://localhost:19011/jsonp',true);
+            // xhr.send();
+    
+            // 1.jsonp
+            // 如何拿到数据：通过全局函数
+            window.getData = (data)=>{
+                console.log('拿到的数据：',data);
+
+                // 请求完成后，删除多余的script标签
+                document.body.removeChild(script)
+            }
+            let script = document.createElement('script');
+            // 把全局“函数名”发送给服务器
+            script.src = 'http://localhost:19011/kuayu/jsonp?callback=getData';
+            document.body.appendChild(script);
+
+
+            // CORS
+            let xhr = new XMLHttpRequest();
+            xhr.onload = ()=>{
+                console.log(xhr.responseText);
+            }
+            xhr.open('get','http://localhost:19011/kuayu/cors',true);
+            xhr.send();
+    
+
+        })();
+    </script>
+</body>
+</html>
