@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+	<title>案例_tab标签切换</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+	<style>
+		.collapse{display: block;}
+	</style>
+	<script src="js/vue.js"></script>
+	
+</head>
+<body>
+	<div id="app" class="container-fluid">
+		<h1>tab标签切换</h1>
+		<div class="tabs">
+			<ul class="nav nav-tabs">
+			  <li class="nav-item" v-for="(tab,idx) in tabs" v-on:click="change(idx,$event)">
+			    <a class="nav-link" href="#" v-bind:class="{active:idx===activeIndex}">
+                    {{tab.title}}
+                </a>
+			  </li>
+			</ul>
+			<div class="collapse">
+			  <div class="card card-body" v-for="(tab,idx) of tabs" v-show="idx===activeIndex">
+                    {{tab.title}} 超爱 {{tab.content}}
+			  </div>
+			</div>
+		</div>
+	</div>
+	<script>
+        /**
+            指令
+                * 数据绑定
+                    * v-model
+                    * v-bind:attr -> 简写 :attr
+                    * v-text
+                    * v-html
+                * 事件
+                    * v-on:event  -> 简写：@event
+                * 循环
+                    * v-for
+                * 条件
+                    * v-if      是否显示(dom)
+                    * v-show    是否显示(css)
+        */
+		let vm = new Vue({
+            el:'#app',
+            data:{
+                tabs:[{
+                    title:'laoxie',
+                    content:'写代码'
+                },{
+                    title:'lemon',
+                    content:'大保健'
+                },{
+                    title:'tiantian',
+                    content:'小保健'
+                }],
+                activeIndex:0
+            },
+
+            methods:{
+                change(idx,e){console.log(idx,e)
+                    // 在事件处理函数中，this指向Vue的实例
+                    this.activeIndex = idx;
+                }
+            }
+        })
+		
+	</script>
+</body>
+</html>
