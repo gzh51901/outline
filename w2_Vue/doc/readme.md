@@ -18,4 +18,24 @@
         ...html
     script
     </body>
-    
+
+
+### Vue
+```js
+    $('.box').html('laoxie')
+    $('.box').html('lemon')
+    $('.box').html('laoxie')
+```
+* 从今天开始，大家要改变DOM节点操作的思维模式，而是把关注点放在数据上
+
+* 属性特性
+    * 值属性
+        * configurable
+        * enumerable
+        * writable
+        * value
+    * 存储器属性
+        * configurable
+        * enumerable
+        * get
+        * set

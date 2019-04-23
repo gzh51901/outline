@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>02双向数据绑定</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <h1>02双向数据绑定</h1>
+    <div id="app">
+        歌名：{{name}}  <br/>
+        点击量：{{hot}}
+        <br/><br/>
+        <!-- <input type="number" v-model="hot" /> -->
+        <input type="number" v-bind:value="hot" v-on:input="change" />
+    </div>
+    <script>
+        function change(){
+            console.log('xxx')
+        }
+        /**
+            指令（html属性）
+            * v-model   双向数据绑定
+            * v-bind    单向数据绑定
+            * v-on      事件绑定
+
+            双向数据绑定的原理（v-model的原理：value+oninput）
+                * View -> Model : 事件
+                * Model -> View ：getter&setter
+
+                * vue在实例化时会遍历data中所有属性，通过Object.defineProperty()方法把它们设置为存储器属性（getter & setter），并写入Vue实例
+        */
+       let data = {
+            name:'你太美',
+            hot:100,
+            // get size(){
+            //     //    data.size
+            //     return 100
+            // },
+            // set size(val){
+            //     //    data.size = 10
+            //     // 一般把存储器属性作为一个代理，用以修改别的属性
+            // }
+        }
+        // 实例化Vue
+        let vm = new Vue({
+            el:'#app',
+            data,
+            methods:{
+                change(e){
+                    console.log(123)
+                    this.hot = e.target.value
+                }
+            }
+        })
+
+        // dom节点操作的写法
+        // view -> model
+        document.querySelector('input').oninput = (e)=>{
+            data.hot = e.target.value;
+        }
+
+        // model -> view
+        let proxy = {}
+        Object.defineProperty(proxy,'hot',{
+            configurable:true,
+            enumerable:true,
+            get:function(){
+                // 读取：当调用data.hot，执行这里的代码
+                return data.hot
+            },
+            set(val){console.log('setter:',val)
+                // 设置：当调用data.hot=10，执行这里的代码
+                data.hot = val;
+
+                document.querySelector('input').value = val
+            }
+        })
+
+        // data.hot = 10086;
+    </script>
+</body>
+</html>
