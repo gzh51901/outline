@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>01.安装与使用</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <h1>01.安装与使用</h1>
+    <!-- View -->
+    <div id="app">
+        <h2>用户名：{{username}}</h2>
+        <p>密码：{{password}}</p>
+    </div>
+
+    <template id="box">
+            <div class="box">
+                template:{{username}}, {{password}}
+            </div>
+        </template>
+    <script>
+        /**
+         * Vue的实例化
+            * 配置参数
+                * el：挂载点（把Vue的内容写在那个容器上）,实例对象的作用域
+                * data：数据
+                * template：模板，指定template，挂载点会被template替换
+            * 数据绑定方式
+                * {{}}
+            
+            * MVC（Model+View+Controller）
+            * MVVM（Model+View+ViewModel）
+         */
+
+        //  Model
+        let data = {username:'lemon',password:123456}
+
+        // ViewModel
+        let vm = new Vue({
+            el: '#app',
+            data,
+            // template:`<div class="box">
+            //     {{username}}
+            // </div>`
+            template:'#box'
+        })
+    </script>
+</body>
+</html>
