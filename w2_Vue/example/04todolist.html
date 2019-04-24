@@ -30,8 +30,8 @@
             <table class="table table-sm" ref="table">
                 <thead>
                     <tr>
-                        <th scope="col" width="100"><label><input type="checkbox"
-                                    value='100'>全选</label></th>
+                        <th scope="col" width="100"><label><input type="checkbox" v-model="checkAll"
+                                    value='100'>全选{{checkAll}}</label></th>
                         <th scope="col" width="100">#</th>
                         <th scope="col">事项</th>
                         <th scope="col">时间</th>
@@ -39,7 +39,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="(item,idx) in list" :class="{'table-dark':item.done,'table-success':item.selected}"
+                    <tr v-for="(item,idx) in list" :key="idx" :class="{'table-dark':item.done,'table-success':item.selected}"
                         @click="selecte(item)">
                         <td><input type="checkbox" v-model="item.selected" :disabled="item.done"></td>
                         <td>{{idx+1}}{{item.selected}}</td>
@@ -47,9 +47,9 @@
                         <td>{{item.time}}</td>
                         <td>
                             <div class="btn-group btn-group-sm">
-                                <button class="btn btn-outline-primary" @click="complete(item)"
+                                <button class="btn btn-outline-primary" @click.stop="complete(item)"
                                     :disabled="item.done">完成</button>
-                                <button class="btn btn-outline-danger" @click="remove(idx)">删除</button>
+                                <button class="btn btn-outline-danger" @click.stop="remove(idx)" @focus="hidefocus">删除</button>
                             </div>
                         </td>
                     </tr>
@@ -81,13 +81,25 @@
                     done:false,
                     selected:false
                 }],
-                keyword: ''
+                keyword: '',
             },
             computed:{
                 // computed中的属性，就是存储器属性
                 // 值为函数时，为getter
                 completed(){
                     return this.list.filter(item=>item.done);
+                },
+                checkAll:{
+                    get(){//
+                        let arr_selected = this.list.filter(item=>item.selected);
+                        return this.list.length === arr_selected.length;
+                    },
+                    set(val){
+                        this.list = this.list.map(item=>{
+                            item.selected = val;
+                            return item;
+                        })
+                    }
                 }
             },
             methods: {
@@ -112,13 +124,18 @@
                 },
 
                 // 改：完成
-                complete(item){
+                complete(item,e){
                     item.done = true;
+                    // e.stopPropagation();
                 },
 
                 // 选择
                 selecte(item){console.log(item)
                     item.selected=!item.selected
+                },
+
+                hidefocus(e){
+                    e.target.blur()
                 },
 
                 // 格式化

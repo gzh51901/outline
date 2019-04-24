@@ -39,3 +39,53 @@
         * enumerable
         * get
         * set
+
+## day2-3
+
+### 面试题
+```js
+    data = {a:{b:1,c:2},d:3,e:{f:5,g:[6,7,8]}} // => [1,2,3,5]
+    getData(data);
+    //递归
+```
+* 乱码的根源是什么
+10w+
+ASCII   ->  GB2312 -> GBK   ->  Unicode
+互联网 -> utf-8（1~4）兼容ascii
+
+00000011 00000011 00000011 00000011
+
+11111111
+
+
+* 数据驱动
+    * 双向数据绑定的原理（v-mode的原理）
+        * v-model
+        ```js
+            <input type="text" v-model="keyword"/>
+            <input type="text" :value="keyword" @input="change"/>
+            // 双数据绑定 = 单向数据绑定 + 事件
+            // 事件：view -> model
+            // 单向数据绑定：model -> view
+            //     响应式属性：getter&setter
+        ```
+    * 单向数据绑定
+        * v-bind:attr
+        * {{}}
+* 配置选项
+    * el
+    * data
+    ```js
+        let vm = new Vue({
+            el, //连接视图层View
+            data, //链接数据层Model
+            computed,
+            methods
+        })
+
+        // this.xxx === vm.xxx
+    ```
+* 架构模式
+    * MVC：Model+View+Controller
+    * MVP：Model+View+Presenter
+    * MVVM: Model+View+ViewModel

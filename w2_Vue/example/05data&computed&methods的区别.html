@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>05data&computed&methods的区别</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+    <script src="js/vue.js"></script>
+    <style>
+        [v-cloak] {
+            display: none
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <h1>05data&computed&methods的区别</h1>
+        <div id="app" v-cloak>
+            <h2>{{username}}</h2>
+            <p>data:{{now}}</p>
+            <p>cdata:{{cnow}}</p>
+            <p>mdata:{{mnow()}}</p>
+            <p>reverseName:{{reverseName}}</p>
+            <p>{{username.split('').reverse().join('')}}</p>
+        </div>
+        <button id="btn">渲染页面</button>
+    </div>
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data: {//初始化
+                now: Date.now(),
+                username: 'lemon'
+            },
+            computed: { // computed有缓存功能
+                cnow() {
+                    return Date.now()
+                },
+                reverseName() {
+                    return this.username.split('').reverse().join('')
+                }
+            },
+            methods: {
+                mnow() {
+                    return Date.now()
+                }
+            }
+        })
+        document.querySelector('#btn').onclick = () => {
+            vm.$mount('#app')
+        }
+    </script>
+</body>
+
+</html>
