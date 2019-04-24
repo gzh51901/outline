@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>07自定义指令</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+    <script src="js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div v-focus:laoxie.stop="username"></div>
+        <input type="text" v-focus/>
+    </div>
+    <script>
+        /**
+            自定义指令（html的属性）
+            >完整指令格式：v-on:click.stop="change"
+            * 全局
+            * 局部
+            
+
+            Vue的全局方法
+        */
+
+        // 自动获得焦点
+        Vue.directive('focus', {
+            bind(el, binding, vnode) {
+                // el：设置指令的节点
+                // vnode: 虚拟节点{tag:xxx,children:[]}
+                console.log(el,vnode);
+
+                //binding参数如下
+                el.innerHTML =
+                    'name: ' + JSON.stringify(binding.name) + '<br>' + //指令名
+                    'value: ' + JSON.stringify(binding.value) + '<br>' + //指令值
+                    'expression: ' + JSON.stringify(binding.expression) + '<br>' + //字符串形式的指令表达式
+                    'arg: ' + JSON.stringify(binding.arg) + '<br>' + //指令参数，
+                    'modifiers: ' + JSON.stringify(binding.modifiers) + '<br>' //指令修饰符
+            },
+            inserted(el, binding, vnode){
+                el.focus();
+            }
+        })
+
+        let vm = new Vue({
+            el:'#app',
+            data:{
+                username:'lemon'
+            },
+            directives:{
+                focus:{},
+                xxx:{}
+                // ...
+            }
+        })
+    </script>
+</body>
+
+</html>

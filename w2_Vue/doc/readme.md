@@ -89,3 +89,22 @@ ASCII   ->  GB2312 -> GBK   ->  Unicode
     * MVC：Model+View+Controller
     * MVP：Model+View+Presenter
     * MVVM: Model+View+ViewModel
+
+* async & await
+* ... 扩展运算符
+    * [...arr]
+    * {...obj}
+    ```js
+        function show (...args){
+            // args -> [10,20,30,40]
+        }
+        show(10,20,30,40)
+
+        function getData(a,b,c){
+
+        }
+        let arr = [10,20,30]
+        getData(...arr);// -> getData(10,20,30)
+    ```
+
+    

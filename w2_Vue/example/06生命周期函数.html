@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>06生命周期函数（钩子函数）</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+    <script src="js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        {{username}}
+        <ul>
+            <li v-for="item in hobby">{{item}}</li>
+        </ul>
+    </div>
+    <script>
+        let vm = new Vue({
+            el:'#app',
+            data:{
+                username:'lemon',
+                hobby:['小保健','考研']
+            },
+            beforeCreate(){
+                console.group('beforeCreate')
+                console.log("%c%s", "color:red" , "el     : " + this.$el); //undefined
+				console.log("%c%s", "color:red","data   : " + this.$data); //undefined 
+				console.log("%c%s", "color:red","username: " + this.username);//undefined
+                console.groupEnd('beforeCreate')
+            },
+            created(){
+                console.group('created')
+                console.log("%c%s", "color:#58bc58" , "el     : " + this.$el); //undefined
+				console.log("%c%s", "color:#58bc58","data   : " + JSON.stringify(this.$data)); //undefined 
+				console.log("%c%s", "color:#58bc58","username: " + this.username);//undefined
+                console.groupEnd('created')
+            },
+            beforeMount(){
+                console.group('beforeMount')
+                console.log("%c%s", "color:red" , "el     : " + this.$el.innerHTML); //undefined
+				console.log("%c%s", "color:red","data   : " + JSON.stringify(this.$data)); //undefined 
+				console.log("%c%s", "color:red","username: " + this.username);//undefined
+                console.groupEnd('beforeMount')
+            },
+            mounted(){
+                console.group('mounted')
+                console.log("%c%s", "color:red" , "el     : " + this.$el.innerHTML); //undefined
+				console.log("%c%s", "color:red","data   : " + JSON.stringify(this.$data)); //undefined 
+				console.log("%c%s", "color:red","username: " + this.username);//undefined
+                console.groupEnd('mounted')
+            },
+			beforeUpdate: function () {
+				console.group('beforeUpdate 更新前状态===============》');
+				console.log("%c%s", "color:red","el     : " , this.$el.innerHTML);
+				console.log("%c%s", "color:red","data   : " + JSON.stringify(this.$data)); 
+				console.log("%c%s", "color:red","username: " + this.username); 
+				console.groupEnd();
+			},
+			updated: function () {
+				console.group('updated 更新完成状态===============》');
+				console.log("%c%s", "color:red","el     : " , this.$el.innerHTML);
+				console.log("%c%s", "color:red","data   : " + JSON.stringify(this.$data)); 
+				console.log("%c%s", "color:red","username: " + this.username); 
+				console.groupEnd();
+			},
+			beforeDestroy: function () {
+				console.group('beforeDestroy 销毁前状态===============》');
+				console.log("%c%s", "color:red","el     : " , this.$el.innerHTML);
+				console.log("%c%s", "color:red","data   : " + JSON.stringify(this.$data)); 
+				console.log("%c%s", "color:red","username: " + this.username); 
+				console.groupEnd();
+			},
+			destroyed: function () {
+				console.group('destroyed 销毁完成状态===============》');
+				console.log("%c%s", "color:red","el     : " , this.$el.innerHTML);
+				console.log("%c%s", "color:red","data   : " + JSON.stringify(this.$data)); 
+				console.log("%c%s", "color:red","username: " + this.username);
+				console.groupEnd();
+			},
+            
+        });
+    </script>
+</body>
+
+</html>
