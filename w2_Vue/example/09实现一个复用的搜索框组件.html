@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>09实现一个复用的搜索框组件</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+    <script src="js/vue.js"></script>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <h1>09实现一个复用的搜索框组件</h1>
+        <div id="app">
+            <my-search v-bind:data="city" btntext="查询"></my-search>
+            <my-search :data="lesson" btntext="搜索"></my-search>
+        </div>
+    </div>
+
+    <template id="mySearch">
+        <div class="mt-3">
+            <div class="input-group">
+                <input type="search" class="form-control">
+                <div class="input-group-append">
+                    <button class="btn btn-success">{{btntext}}</button>
+                </div>
+            </div>
+            <ul class="list-group">
+                <li class="list-group-item" v-for="item in data">{{item}}</li>
+            </ul>
+        </div>
+    </template>
+
+    <script>
+        /**
+         * 组件通讯
+            * 父->子
+                * props
+        */
+        Vue.component('mySearch', {
+            // 接收传入的属性
+            props:['data','btntext'],
+            data(){
+                return {
+                    // result:[]
+                }
+            },
+            template: '#mySearch'
+        })
+        let vm = new Vue({
+            el: '#app',
+            data:{
+                city:['北京','上海','广州','深圳','东莞','佛山','成都','武汉'],
+                lesson:['html5','javascript','css','vue','nodejs','react','webpack']
+            }
+        })
+    </script>
+</body>
+
+</html>

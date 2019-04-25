@@ -107,4 +107,32 @@ ASCII   ->  GB2312 -> GBK   ->  Unicode
         getData(...arr);// -> getData(10,20,30)
     ```
 
-    
+## day2-4
+* Vue的生命周期
+    * 生命周期函数（钩子函数）
+        * Create 数据处理阶段
+            * beforeCreate
+            * Created
+        * Mount 挂载阶段
+            * beforeMount
+            * Mounted
+        * Update 视图更新阶段
+            * beforeUpdate
+            * updated
+        * Destroy 销毁阶段
+            * beforeDestroy
+            * destroyed
+    * 每个生命周期函数适合做什么
+
+* 自定义指令（html属性）
+    * 全局
+        Vue.directive(name,option)
+        myFocus -> v-my-focus
+    * 局部
+        directives {name:option}
+    * 使用：v-name
+
+* 组件（html标签）
+    * 全局组件
+    * 局部组件
+    * 单文件组件

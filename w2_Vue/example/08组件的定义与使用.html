@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>06生命周期函数（钩子函数）</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+    <script src="js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <my-card></my-card>
+        <my-card></my-card>
+        <my-card></my-card>
+        <my-card></my-card>
+        <my-card>
+
+        </my-card>
+        
+    </div>
+
+    <template id="myCard">
+        <div>
+            <my-head></my-head>
+            <div>
+                <h1>姓名：{{username}}</h1>
+            </div>
+            <div>性别：男</div>
+            
+        </div>
+    </template>
+    <script>
+        /**
+             * 定义组件（自定义html标签，组件就是Vue的实例）
+                * 全局组件
+                    Vue.component(name,options)
+                * 局部组件
+            * 使用组件
+                <card/>
+                <my-card></my-card>
+        */
+
+        // 全局组件
+        Vue.component('myCard',{
+            data:function(){
+                return {username:'laoxie'}
+            },
+            // 配置选项与Vue实例一致
+            template:`#myCard`,
+            components:{
+                myHead:{
+                    data:()=>({
+                        username:'xxx'
+                    }),
+                    template:'<div>{{username}} my head</div>'
+                },
+                myBody:{
+                    data(){
+                        return {
+                            content:'mybody'
+                        }
+                    },
+                    template:'<div>{{content}} my body</div>'
+                }
+            }
+        })
+
+
+        // Vue的实例
+        let vm = new Vue({
+            el:'#app',
+            data:{
+
+            },
+            computed:{
+
+            },
+            methods:{
+
+            }
+        })
+
+    </script>
+</body>
+
+</html>
