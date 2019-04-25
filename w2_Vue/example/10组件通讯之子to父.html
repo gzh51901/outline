@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>10组件通讯之子to父</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+    <script src="js/vue.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>10组件通讯之子to父</h1>
+        <div id="app">
+            父组件数据：{{keyword}}
+            <myheader :keyword="keyword" v-on:changekeyword="change"></myheader>
+            <myfooter :keyword.sync="keyword"></myfooter>
+            <!-- 等效于：<myfooter :keyword.sync="keyword" v-on:update:keyword="(val)=>keyword=val"></myfooter> -->
+        </div>
+    </div>
+    <script>
+        let myheader = {
+            props:['keyword'],
+            data(){
+                return {
+                    moviename:''
+                }
+            },
+            template:`<header>
+                传入子组件的数据：{{keyword}}<br>
+                <input type="text" v-model="moviename"/>
+                <button @click="changemoviename">修改</button>
+            </header>`,
+            methods:{
+                changemoviename(){
+                    this.$emit('changekeyword',this.moviename)
+                }
+            }
+        }
+        let myfooter = {
+            props:['keyword'],
+            data(){
+                return {}
+            },
+            template:`<footer>底部：{{keyword}}</footer>`,
+            mounted(){
+                setTimeout(()=>{
+                    this.$emit('update:keyword','lemon4')
+                },5000)
+            }
+        }
+
+        let vm = new Vue({
+            el:'#app',
+            data:{
+                keyword:'复仇者联盟4'
+            },
+            components:{
+                myheader,
+                myfooter
+            },
+            methods:{
+                // 谁的数据谁修改
+                change(val){
+                    this.keyword = val
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

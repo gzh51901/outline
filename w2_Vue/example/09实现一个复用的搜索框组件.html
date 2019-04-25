@@ -15,20 +15,20 @@
         <h1>09实现一个复用的搜索框组件</h1>
         <div id="app">
             <my-search v-bind:data="city" btntext="查询"></my-search>
-            <my-search :data="lesson" btntext="搜索"></my-search>
+            <my-search :data="lesson" v-bind:step="10"></my-search>
         </div>
     </div>
 
     <template id="mySearch">
         <div class="mt-3">
             <div class="input-group">
-                <input type="search" class="form-control">
+                <input type="search" class="form-control" v-model="keyword">
                 <div class="input-group-append">
                     <button class="btn btn-success">{{btntext}}</button>
                 </div>
             </div>
             <ul class="list-group">
-                <li class="list-group-item" v-for="item in data">{{item}}</li>
+                <li class="list-group-item" v-for="item in result" @click="keyword=item">{{item}}</li>
             </ul>
         </div>
     </template>
@@ -36,23 +36,52 @@
     <script>
         /**
          * 组件通讯
-            * 父->子
-                * props
+            * 父->子：props
+                1.给组件设置属性
+                2.在组件内接收属性
+            * 数据类型验证
+                * 必填、默认值、数据类型，自定验证规则
         */
         Vue.component('mySearch', {
             // 接收传入的属性
-            props:['data','btntext'],
+            //成为mySearch组件（实例）的属性
+            props:{
+                data:{
+                    type:Array,
+                    required:true
+                },
+                btntext:{
+                    type:String,
+                    default:'搜索'
+                },
+                step:{
+                    type:Number,
+                    validator: function (val) {
+                        // step的范围：1-10
+                        return val>=1&&val<=10
+                    }
+                }
+            },
             data(){
                 return {
-                    // result:[]
+                    keyword:''
                 }
+            },
+            computed:{
+                result(){
+                    
+                    return this.keyword ? this.data.filter(item=>item.includes(this.keyword)) : []
+                }
+            },
+            mounted(){
+                this.data = [10,20,30]
             },
             template: '#mySearch'
         })
         let vm = new Vue({
             el: '#app',
             data:{
-                city:['北京','上海','广州','深圳','东莞','佛山','成都','武汉'],
+                city:['北京','上海','广州','深圳','东莞','佛山','成都','武汉','北海','海口','惠州','梅州','扬州','钦州'],
                 lesson:['html5','javascript','css','vue','nodejs','react','webpack']
             }
         })
