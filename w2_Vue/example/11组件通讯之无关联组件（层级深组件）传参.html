@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>11组件通讯之无关联组件（层级深组件）传参</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+    <script src="js/vue.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>11组件通讯之无关联组件（层级深组件）传参</h1>
+        <div id="app">
+            <com-a></com-a>
+            <com-b></com-b>
+        </div>
+    </div>
+    <script>
+        // 定义中间桥梁bus
+        let bus = new Vue();
+
+        // bus.$on('xxx',function(){})
+        // bus.$emit('xxx')
+
+        //组件A（传输方）
+        let comA = {
+            data(){
+                return {
+                    msg:'I am A'
+                }
+            },
+            template:`<div class="mb-5 border p-3">
+                <p>{{msg}}</p>
+                <button @click="send">传数据到B组件</button>
+            </div>`,
+            methods:{
+                send(){
+                    // 传输方（组件A）：$emit()
+                    bus.$emit('getdata','我是一头来自A组件的狼')
+                }
+            }
+        }
+
+
+         // 组件B（接收方）
+        let comB = {
+            data:()=>({
+                msg:'I am B'
+            }),
+            mounted(){
+                // 接收方（组件B）：自定义事件
+               bus.$on('getdata',data=>{
+                  this.msg = data;
+               });
+
+               console.log('comB parent',this.$parent===this.$root)
+            },
+            template:`<div class="border p-3"><p>{{this.msg}}</p></div>`
+        }
+
+        // 创建实例，并注册子组件
+        let vm = new Vue({
+            el:'#app',
+            components:{
+                comA,
+                comB
+            }
+        });
+    </script>
+</body>
+
+</html>

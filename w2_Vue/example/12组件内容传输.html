@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>12组件内容传输</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+    <script src="js/vue.js"></script>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <h1>12组件内容传输</h1>
+        <div id="app">
+           <my-button :handler="change">
+               <template v-slot:footer>search</template>
+               <template v-slot:header="headerScope">千锋
+                   <strong>姓名：{{headerScope.username}}</strong>
+                   <span>年龄：{{headerScope.age}}</span>
+                </template>
+               <span>搜索</span>
+            </my-button>
+           <my-button>提交</my-button>
+        </div>
+    </div>
+    <script>
+        /**
+            * 组件内容传输
+                * 组件内容
+                * 组件模板template
+            * slot插槽：用来承载组件内容
+                * 默认插槽：default
+                * 具名插槽：有名字的插槽
+                    * 外->内：v-slot:[name]
+                    * 内->外：v-slot:[name]="scope" : 把<slot/>组件的属性写入scope对象（name属性除外）
+                        * 好处：把组件中的数据传到外部实现特殊定制
+        */
+        let myButton = {
+            props:{
+                handler:{
+                    type:Function,
+                    default:()=>{}
+                }
+            },
+            template:`<button @click="handler">
+                <slot name="header" :age="18" username="laoxie"/>
+                <slot/>
+                <slot name="footer"/>
+                <strong>按钮</strong>
+            </button>`
+        }
+        let vm = new Vue({
+            el:document.querySelector('#app'),
+            components:{
+                myButton
+            },
+            methods:{
+                change(){
+                    console.log(666)
+                }
+            }
+        })
+    </script>
+    
+</body>
+
+</html>

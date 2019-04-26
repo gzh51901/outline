@@ -132,13 +132,15 @@ ASCII   ->  GB2312 -> GBK   ->  Unicode
         directives {name:option}
     * 使用：v-name
 
-* 组件（html标签）
-    * 全局组件
-    * 局部组件
+* 组件（xml标签）
+    * 全局组件 Vue.component(name,options)
+    * 局部组件 components
     * 单文件组件
-
+    * 使用：<xxx-xx>
 * 组件通讯
-    * 父->子
-    * 子->父
+    * 父->子 props
+    * 子->父 自定义事件+$emit(type,...params)
+        * 简化版：v-bind:attr.sync   + $emit('update:attr',xxx)
+    * 兄弟组件传参关键：找到共同的父级
 * 数据流
     * 单向：父组件->子组件
