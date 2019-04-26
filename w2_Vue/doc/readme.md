@@ -144,3 +144,13 @@ ASCII   ->  GB2312 -> GBK   ->  Unicode
     * 兄弟组件传参关键：找到共同的父级
 * 数据流
     * 单向：父组件->子组件
+
+* http/https
+    * 私钥
+    * 证书（公钥+）
+
+    md5(123) ; => md5(dalfkjaslkladflxl-sadfjl)
+    md5(12356)
+    666666
+    888888
+    admin
