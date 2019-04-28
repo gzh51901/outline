@@ -25,6 +25,17 @@
         open:true
     },
 
+    resolve: {
+        // 别名
+        alias: {
+            'vue$' : 'vue/dist/vue.js',
+            '@':path.resolve('src'),
+            '@com':path.resolve('src/components'),
+        },
+        // 自动补全扩展名
+        extensions:['.js','.vue', '.json']
+    },
+
     // 加载器loader
     module:{
         rules:[

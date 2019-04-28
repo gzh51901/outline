@@ -195,3 +195,36 @@ ASCII   ->  GB2312 -> GBK   ->  Unicode
         cmd
     * base64编码
         * 
+
+* png图片在IE6下的问题
+    * png8
+    * png24
+    * png32
+
+* 模块化开发中，每个文件都是独立作用域
+
+* 虚拟DOM（Virtual Node）
+    * 结构类似与DOM节点的js对象
+    * diff算法
+        * key : 唯一而且稳定
+
+* bus & vuex
+* 设计模式
+    * 单例模式
+    * 工厂模式
+    * 观察者模式
+    * 监听者模式（事件）
+    ....
+
+* 后面内容
+    * 内置组件
+    * 路由
+    * VueX 
+    * vue-cli
+    * UI框架 
+        * elementUI
+        * iview
+        * antdesign
+
+
+* 过滤器

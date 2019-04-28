@@ -1,10 +1,17 @@
 <template>
     <div class="myapp">
        <TodoList></TodoList>
+        <br><br>
+       <!-- <Carousel></Carousel> -->
+
+       <br><br>
+       <Keepalive></Keepalive>
     </div>
 </template>
 <script>
-    import TodoList from './components/TodoList.vue'
+    import TodoList from '@com/TodoList';
+    import Carousel from '@com/Carousel';
+    import Keepalive from '@com/Keepalive';
     export default {
         data:function(){
             return {
@@ -12,7 +19,9 @@
             }
         },
         components:{
-            TodoList
+            TodoList,
+            Carousel,
+            Keepalive
         }
     }
 </script>

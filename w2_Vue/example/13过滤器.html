@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>13过滤器</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <h1>13过滤器</h1>
+    <div id="app">
+        <p>小写：{{username}}</p>
+        <!-- 等效于 upperCase(username) -->
+        <p>大写：{{username | upperCase}}</p>
+        <p>首字母大写：{{username | capitalize}}</p>
+
+        <!-- 等效于：rmb(formatPrice(price)) -->
+        <p>价格：{{price | rmb | formatPrice}}</p>
+    </div>
+    <script>
+        /**
+            13过滤器
+                * 全局过滤器 Vue.filter(name,fn)
+                * 局部过滤 filters
+                
+
+                * 全局过滤器与局部过滤可以共存（就近原则）
+
+            * 正则：零宽断言
+            
+            
+        */
+       Vue.filter('upperCase',val=>val.toUpperCase());
+       Vue.filter('capitalize',val=>val[0].toUpperCase() + val.substring(1));
+
+        let vm = new Vue({
+            data:{
+                username:'lemon',
+                price:100000,
+            },
+            methods:{
+                capitalize(str){
+                    return str[0].toUpperCase() + str.substring(1)
+                }
+            },
+            filters:{
+                capitalize(val){
+                    return val[0].toUpperCase() + val.substring(1)
+                },
+                formatPrice(val){
+                    // 分组： ()
+                    // 非捕获分组： (?:)
+                    // 零宽断言：
+                    //  * 正向/负向
+                    //  * 先行/后行
+                    // 1000 -> 1,000
+                    // 1000000 -> 1,000,000
+                    // return val.replace(/(\d+?)(?=(?:\d{3})+$)/g,'$1,')
+                    return String(val).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                },
+                rmb(val){
+                    return '￥'+val;
+                }
+            }
+        });
+
+        vm.$mount('#app')
+    </script>
+</body>
+</html>

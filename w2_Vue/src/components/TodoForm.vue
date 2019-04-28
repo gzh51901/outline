@@ -8,6 +8,9 @@
 </template>
 <script>
 export default {
+    props:{
+        handleradd:Function
+    },
     data(){
         return {
             keyword:''
@@ -15,7 +18,9 @@ export default {
     },
     methods:{
         add(){
-            
+            this.handleradd(this.keyword);
+            this.keyword = ''
+            this.$refs.keyword.focus();
         }
     }
 }
