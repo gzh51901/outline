@@ -12,13 +12,14 @@
      // 设置入口文件
      entry:'./src/app.js',
 
-     // 输出配置
+     // 输出配置：上线
      output:{
         path:path.resolve(__dirname,'./dist'),
         filename:'js/[name]-bundle.js'
     },
 
     // 服务器webpack-dev-server
+    // 所有的文件都在内存中处理
     devServer:{
         contentBase: path.resolve(__dirname,'./src'),
         open:true
@@ -30,6 +31,14 @@
             {
                 test:/\.vue$/,
                 loader:['vue-loader']
+            },
+            {
+                test:/\.css$/,
+                use:[{
+                    loader:'style-loader'
+                },{
+                    loader:'css-loader'
+                }]
             }
         ]
     },

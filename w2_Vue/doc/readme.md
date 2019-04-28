@@ -154,3 +154,44 @@ ASCII   ->  GB2312 -> GBK   ->  Unicode
     666666
     888888
     admin
+
+## day 2-7
+* 如何避免js的阻塞
+    * script
+        * type:  text/javascript
+        * src
+        * async/defer
+    
+* 复习
+    * webpack
+        * 入口entry
+        * 出口output
+        * 服务器devServer
+        * 加载器loader
+        * 插件plugin
+    * ES Module
+        * 导出 export
+            * export后只能跟随的关键字：var function let const {} default
+            * 原理：往“模块对象”添加属性
+            ```js
+                export var username='lemon'; //往模块对象中添加一个username属性
+                export default function(){};// 往模块对象中添加一个default属性
+            ```
+        * 引入 import xx from url
+            ```js
+                import {username} from './xxx';//引入模块对象中的username属性
+                import getData from '../xxx' // 引入模块对象中的Default属性
+            ```
+    * Vue单文件组件
+        * vue-loader
+
+
+        require('vue')
+        import vue from 'vue'
+
+        esm     es module
+        cjs     commonjs
+        amd 
+        cmd
+    * base64编码
+        * 
