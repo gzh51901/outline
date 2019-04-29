@@ -2,7 +2,7 @@
     <div class="transition">
         <button @click="show=!show">显示隐藏</button>
         <div>
-            <transition name="laoxie"
+            <transition-group name="laoxie"
 
             enter-class="dspn"
             enter-active-class="animated"
@@ -13,17 +13,11 @@
 
             :css="true"
 
-            v-on:before-enter="beforeEnter"
-            v-on:enter="enter"
-            v-on:after-enter="afterEnter"
-            v-on:enter-cancelled="enterCancelled"
-            v-on:before-leave="beforeLeave"
-            v-on:leave="leave"
-            v-on:after-leave="afterLeave"
-            v-on:leave-cancelled="leaveCancelled"
+            
             >
-                <img :src="imgurl" v-show="show"/>
-            </transition>
+                <img :src="imgurl" key="laoxie" v-show="show"/>
+                <img src="../img/lemon.jpg" key="lemon" v-show="show"/>
+            </transition-group>
         </div>
     </div>
 </template>
