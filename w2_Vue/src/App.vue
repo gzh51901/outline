@@ -6,12 +6,16 @@
 
        <br><br>
        <Keepalive></Keepalive>
+
+       <br><br>
+       <Donghua></Donghua>
     </div>
 </template>
 <script>
     import TodoList from '@com/TodoList';
     import Carousel from '@com/Carousel';
     import Keepalive from '@com/Keepalive';
+    import Donghua from '@com/Donghua';
     export default {
         data:function(){
             return {
@@ -21,7 +25,8 @@
         components:{
             TodoList,
             Carousel,
-            Keepalive
+            Keepalive,
+            Donghua
         }
     }
 </script>

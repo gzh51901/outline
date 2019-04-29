@@ -50,7 +50,17 @@
                 },{
                     loader:'css-loader'
                 }]
-            }
+            },
+            {
+				test:/\.(?:jpe?g|png|gif)$/,
+				use:{
+					loader:'url-loader',
+					options:{
+						limit:100000,//如果图片小于10k，则转成base64
+						name: 'img/[name].[hash:8].[ext]'
+					}
+				}
+			}
         ]
     },
 
