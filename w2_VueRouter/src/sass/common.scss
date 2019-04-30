@@ -1,0 +1,6 @@
+.price{
+    span{margin-left:5px;color:#f00}
+    del::before,span::before{
+      content:'￥'
+    }
+  }

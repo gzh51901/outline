@@ -18,16 +18,14 @@
           <el-menu-item :index="item.path" v-for="item in pages" :key="item.name">
             <i :class="item.icon"></i>
             <span slot="title">{{item.text}}</span>
+            <el-badge :value="cartLen" class="mark" :hidden="item.name!=='Cart'"/>
           </el-menu-item>
         </el-menu>
       </el-aside>
-      <el-container>
-        <el-header>首页>列表</el-header>
         <el-main>
           <!-- 显示组建内容 -->
           <router-view/>
         </el-main>
-      </el-container>
     </el-container>
   </el-container>
 </template>
@@ -35,6 +33,7 @@
 import Vue from "vue";
 import ElementUI from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
+import './sass/common.scss';
 Vue.use(ElementUI);
 
 export default {
@@ -69,10 +68,14 @@ export default {
       ]
     };
   },
-  components: {}
+  computed:{
+      cartLen(){
+          return this.$store.state.goodslist.length
+      }
+  }
 };
 </script>
-<style>
+<style scoped>
 .active {
   color: #f00;
   font-weight: bold;
@@ -84,4 +87,5 @@ export default {
     border-top-left-radius: 0;
     border-bottom-left-radius:0 
 }
+.mark{position:absolute;top:0;right:30px;}
 </style>

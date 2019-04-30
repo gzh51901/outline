@@ -87,3 +87,48 @@ Vue是一个渐进式框架（Vue全家桶）
 
 * 路由
 >根据url地址渲染相应的组件
+
+
+* ajax请求第三方工具
+    * axios
+    * fetch
+
+* git/svn
+    * 团队开发
+    * 分支
+        * master
+        * dev
+        * laoxie
+        * xiaoxie
+        * lemon
+        * tiantian
+* gulp与webpack工作原理
+* 上线流程
+    * 开发阶段
+        * 自测
+        * 单元测试
+    * 测试阶段
+        * 本地测试
+            * 假数据
+        * UAT（用户测试环境）
+            * 真实数据
+    * 上线阶段
+        * 发布到服务器
+
+    估算时间：2day*2
+
+    FE front-end
+    BE back-end
+
+* 局部样式的原理
+    * scoped： webpack会给当前组件所有html元素加上一个data-v-[hash]
+    * 属性选择器：然后通过属性选择器达到局部样式的效果
+
+* vuex
+    * 使用步骤
+    * 核心概念
+        * store 存储仓库
+            * state 状态（数据）                    类似于组件中的data
+            * getters（用于过滤state）              类似与组件中的computed(getter&setter)
+            * mutations（修改state的方法）          理解为组件中的methods
+            * actions（用来操作mutations）          类似mutations

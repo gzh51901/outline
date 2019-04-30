@@ -10,10 +10,10 @@
     </el-carousel>
     <!-- 商品列表 -->
     <el-row :gutter="20">
-      <el-col :span="6" v-for="goods in goodslist" :key="goods.proId" style="height:300px" @click.native="goto(goods.proId)">
+      <el-col :span="6" v-for="goods in goodslist" :key="goods.proId" style="height:300px" @click.native="goto(goods)">
         <el-image style="width: 100px; height: 100px" :src="goods.proImg" fit="fit"></el-image>
         <h4>{{goods.proName}}</h4>
-        <p class="price"><del>{{goods.proPrice}}</del><span>{{(goods.proPrice*(1-goods.sellPercent/100)).toFixed(2)}}</span></p>
+        <p class="price"><del>{{goods.proPrice.toFixed(2)}}</del><span>{{(goods.proPrice*(1-goods.sellPercent/100)).toFixed(2)}}</span></p>
       </el-col>
     </el-row>
   </div>
@@ -27,9 +27,13 @@ export default {
     };
   },
   methods:{
-    goto(id){console.log(id)
-      this.$router.push({name:'Goods',params:{id,username:'laoxie'},query:{age:18}})
+    goto(goods){
+      let id = goods.proId
+      this.$router.push({name:'Goods',params:{id}})
       // this.$router.push({path:'/goods/'+id,query:{id}})
+
+      // 本地存储
+      sessionStorage.setItem('goods',JSON.stringify(goods));
     }
   },
   created() {
@@ -57,7 +61,9 @@ export default {
   }
 };
 </script>
-<style lang="scss">
+
+<style lang="scss" scoped>
+// 局部样式scoped
 .lbt {
   img {
     width: 100%;
@@ -80,12 +86,5 @@ export default {
     font-size: 14px;
   }
 }
-
-.price{
-    span{margin-left:5px;color:#f00}
-    span::before{
-      content:'￥'
-    }
-  }
 </style>
 
