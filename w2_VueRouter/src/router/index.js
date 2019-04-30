@@ -52,7 +52,7 @@ const router = new VueRouter({
         }]
     },{
         name:'Goods',
-        path:'/goods',
+        path:'/goods/:id',//动态路由
         component:Goods
     }]
 })

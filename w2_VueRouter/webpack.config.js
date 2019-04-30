@@ -52,6 +52,10 @@
                 }]
             },
             {
+                test:/\.scss$/,
+                use:['style-loader','css-loader','sass-loader']
+            },
+            {
 				test:/\.(?:jpe?g|png|gif)$/,
 				use:{
 					loader:'url-loader',
