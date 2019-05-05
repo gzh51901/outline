@@ -64,3 +64,37 @@
 
 ## Router组件通讯
 <Home username="laoxie" age="18" />
+<Goods v-bind="{username:'laoxie',password:123456}"> -> <Goods username="laoxie" password="123456">
+
+
+###jquery优化
+```js
+    $box = $('.box')
+    $box.css('color',"#f00").html('laoxie').css('color') //#f00
+    $box.attr('title','xxx')
+```
+
+###Vue的缺点
+* React比Vue性能好，
+    * Vue: getter&setter  Object.defineProperty(target,attr,options)
+
+* 不兼容IE8-
+* 大量响应式属性（getter&setter）
+
+```js
+var password = 'abc'
+var obj = {
+    username:'laoxie',
+    password,
+    [password]:123 //=>abc:123
+}
+
+obj.age = 18
+obj['age'] = 18
+```
+
+* 响应式属性
+    * 如果把属性设置成响应式属性
+        * 实例化时把属性写到data
+
+* 路由拦截

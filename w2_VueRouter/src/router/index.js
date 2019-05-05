@@ -40,27 +40,45 @@ const router = new VueRouter({
             // 为所欲为
             return {username:'lemon',age:38}
         }
-    },{
-        name:'List',
+    },
+    {
         path:'/list',
+        redirect:'/list/phone'
+    },
+    {
+        name:'List',
+        path:'/list/:category',
+        beforeEnter(to,from,next){
+            console.log('beforeEnter');
+            next();
+        },
         component:List,
-        children:[{
-            // 当浏览器地址为/list/phone 渲染Phone组件
-            path:'phone',
-            component:Phone
-        },{
-            path:'computer',
-            component:Computer
-        },{
-            path:'pad',
-            component:Pad
-        }]
+        // children:[{
+        //     // 当浏览器地址为/list/phone 渲染Phone组件
+        //     path:'phone',
+        //     component:Phone
+        // },{
+        //     path:'computer',
+        //     component:Computer
+        // },{
+        //     path:'pad',
+        //     component:Pad
+        // }]
     },{
         name:'Goods',
         path:'/goods/:id',//动态路由
         component:Goods,
         props:true //原理<Goods v-bind="$route.params"/>
     }]
+})
+
+// 全局路由守卫
+router.beforeEach((to,from,next)=>{
+    console.log('beforeEach');
+    next();
+})
+router.afterEach((to,from)=>{
+    console.log('afterEach')
 })
 
 export {
