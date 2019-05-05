@@ -37,6 +37,7 @@ export default {
 
             // replace无浏览器记录
             this.$router.replace(path)
+            
         }
     }
 }

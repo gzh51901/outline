@@ -17,6 +17,7 @@
 </template>
 <script>
 export default {
+    name:'Cart',
     data(){
         return {
 
@@ -41,6 +42,17 @@ export default {
     },
     mounted(){
         console.log(this.$store.state)
+    },
+    destroyed(){
+        console.log('Cart:destroyed')
+    },
+
+    // keep-alive
+    activated(){
+        console.log('activated')
+    },
+    deactivated(){
+        console.log('deactivated')
     }
 }
 </script>

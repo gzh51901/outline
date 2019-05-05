@@ -24,7 +24,9 @@
       </el-aside>
         <el-main>
           <!-- 显示组建内容 -->
-          <router-view/>
+          <keep-alive>
+            <router-view/>
+          </keep-alive>
         </el-main>
     </el-container>
   </el-container>

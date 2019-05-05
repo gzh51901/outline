@@ -8,12 +8,13 @@
 </template>
 <script>
 export default {
+    // props:['id'],
     data(){
         return {
             goods:null
         }
     },
-    mounted(){
+    mounted(){console.log('goods:',this)
         let {id} = this.$route.params;
         // 根据id请求商品信息
         this.$axios.get('https://m.jiuxian.com/m_v1/goods/detailPromo/'+id).then(({data})=>{

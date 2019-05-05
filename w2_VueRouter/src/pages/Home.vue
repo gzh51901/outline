@@ -20,6 +20,7 @@
 </template>
 <script>
 export default {
+  props:['username'],
   data() {
     return {
       recommed: [],
@@ -28,8 +29,8 @@ export default {
   },
   methods:{
     goto(goods){
-      let id = goods.proId
-      this.$router.push({name:'Goods',params:{id}})
+      let id = goods.proId;
+      this.$router.push({name:'Goods',params:{id,className:'1901',qty:48}})
       // this.$router.push({path:'/goods/'+id,query:{id}})
 
       // 本地存储

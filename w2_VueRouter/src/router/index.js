@@ -30,11 +30,16 @@ const router = new VueRouter({
     },{
         name:'Home',
         path:'/home',
-        component:Home
+        component:Home,
+        props:{username:'laoxie',age:18},//<Home v-bind="{username:'laoxie',age:18}"/>
     },{
         name:'Cart',
         path:'/cart',
         component:Cart,
+        props:function(route){//<Cart v-bind="{username:'lemon',age:38}"/>
+            // 为所欲为
+            return {username:'lemon',age:38}
+        }
     },{
         name:'List',
         path:'/list',
@@ -53,7 +58,8 @@ const router = new VueRouter({
     },{
         name:'Goods',
         path:'/goods/:id',//动态路由
-        component:Goods
+        component:Goods,
+        props:true //原理<Goods v-bind="$route.params"/>
     }]
 })
 
