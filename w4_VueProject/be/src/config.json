@@ -1,0 +1,5 @@
+{
+    "PORT":19011,
+    "mongo":"mongodb://localhost:27017",
+    "database":"laoxie"
+}

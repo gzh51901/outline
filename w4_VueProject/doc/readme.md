@@ -23,3 +23,22 @@
     * 全局守卫
     * 路由独享守卫
     * 组件内的守卫
+
+
+### 面试题
+* restful API
+    * get /api/goods/xxx
+    * put /api/goods/xxx
+    * delete /api/goods/xxx
+    * post /api/goods
+
+    * get /api/list/phone
+    * get /api/list/phone/apple
+    * get /api/list/phone/huawei
+* setInterval(fn,16) -> 丢/掉帧
+    * 
+
+
+### 知识点
+* 跨域请求
+    * OPTIONS 预请求

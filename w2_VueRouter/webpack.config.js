@@ -23,7 +23,19 @@
     devServer:{
         contentBase: path.resolve(__dirname,'./src'),
         port:1901,
-        host:'0.0.0.0'
+        host:'0.0.0.0',
+
+        // webpack的代理服务器，只能在开发环境中使用，上线后无效
+        proxy:{
+            // '/api/reg' -> 'http://localhost:19011/api/reg' -> 'http://localhost:19011/reg'
+            '/api/*':{
+                "target": "http://localhost:19011", //目标服务器
+                "changeOrigin": true,
+                "pathRewrite": {
+                    "^/api" : "/"
+                }
+            },
+        }
     },
 
     resolve: {

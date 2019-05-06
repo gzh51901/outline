@@ -12,6 +12,7 @@ import axios from "axios";
 
 
 // 给Vue的原型对象添加属性，方便所有子组件获取
+// axios.defaults.baseURL = 'http://localhost:19011';
 Vue.prototype.$axios = axios;
 
 new Vue({
