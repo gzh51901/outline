@@ -9,6 +9,8 @@ import Home from '@/pages/Home.vue';
 import Cart from '@/pages/Cart.vue';
 import List from '@/pages/List.vue';
 import Goods from '@/pages/Goods.vue';
+import Reg from '@/pages/Reg.vue';
+import Login from '@/pages/Login.vue';
 
 // List的子路由（嵌套路由）
 const Phone = {
@@ -69,6 +71,14 @@ const router = new VueRouter({
         path:'/goods/:id',//动态路由
         component:Goods,
         props:true //原理<Goods v-bind="$route.params"/>
+    },{
+        name:'Reg',
+        path:'/reg',
+        component:Reg
+    },{
+        name:'Login',
+        path:'/login',
+        component:Login
     }]
 })
 

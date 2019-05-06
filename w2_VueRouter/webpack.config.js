@@ -22,7 +22,8 @@
     // 所有的文件都在内存中处理
     devServer:{
         contentBase: path.resolve(__dirname,'./src'),
-        port:1901
+        port:1901,
+        host:'0.0.0.0'
     },
 
     resolve: {

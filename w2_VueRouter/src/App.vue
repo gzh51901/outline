@@ -1,14 +1,18 @@
 <template>
   <el-container>
     <el-header>
-      <el-row>
-        <el-col :span="12">
+      <el-row :gutter="3">
+        <el-col :span="8">
           <img src="/img/logo.svg">
         </el-col>
         <el-col :span="12">
           <el-input placeholder="请输入内容" v-model="keyword" class="input-with-select mysearch">
             <el-button slot="append" type="success" icon="el-icon-search"></el-button>
           </el-input>
+        </el-col>
+        <el-col :span="4" class="login-bar">
+          <el-button type="text" @click="goto('/reg')">注册</el-button>
+          <el-button type="text" @click="goto('/login')">登录</el-button>
         </el-col>
       </el-row>
     </el-header>
@@ -24,9 +28,9 @@
       </el-aside>
         <el-main>
           <!-- 显示组建内容 -->
-          <keep-alive>
+          <!-- <keep-alive> -->
             <router-view/>
-          </keep-alive>
+          <!-- </keep-alive> -->
         </el-main>
     </el-container>
   </el-container>
@@ -74,6 +78,11 @@ export default {
       cartLen(){
           return this.$store.state.goodslist.length
       }
+  },
+  methods:{
+    goto(path){
+      this.$router.push(path)
+    }
   }
 };
 </script>
@@ -90,4 +99,5 @@ export default {
     border-bottom-left-radius:0 
 }
 .mark{position:absolute;top:0;right:30px;}
+.login-bar{text-align: right}
 </style>
