@@ -37,7 +37,6 @@ export default {
       }
     };
     var checkUsername = (rule, value, callback) => {
-        console.log(1234)
       this.$axios.get('/api/reg/check',{
           params:{
               username:value
@@ -91,7 +90,7 @@ export default {
             .post("/api/reg", { username, password})
             .then(({ data }) => {
               console.log(data);
-            //   this.$router.replace("/login");
+              this.$router.replace("/login");
             });
         } else {
           console.log("error submit!!");

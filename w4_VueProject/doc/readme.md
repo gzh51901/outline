@@ -42,3 +42,30 @@
 ### 知识点
 * 跨域请求
     * OPTIONS 预请求
+
+
+## day4-2
+
+* Vue-CLI
+    1. vue create
+    2. vue build
+    3. 部署上线
+
+    * 安装插件
+        * npm i router      安装
+        * vue add router    安装&配置
+
+* webpack
+    * 是否需要webpack处理
+        * 否：绝对路径 <img src="/img/xxx.jpg"> index.html -> /fe/img/xxx.jpg
+        * 是：
+            * 相对路径
+            * import
+            * require  require('./img/xxx.jpg')
+
+* SPA & MPA
+    * 移动端：SPA
+
+* 版本
+    * production    生产环境
+    * development   开发环境

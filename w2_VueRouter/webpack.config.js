@@ -10,12 +10,15 @@
  // 导出配置模块
  module.exports = {
      // 设置入口文件
-     entry:'./src/app.js',
+     entry:{
+         main:'./src/app.js',
+     },
 
      // 输出配置：上线
      output:{
         path:path.resolve(__dirname,'./dist'),
-        filename:'js/[name]-bundle.js'
+        filename:'js/[name]-bundle.js',
+        // publicPath:'/fe'
     },
 
     // 服务器webpack-dev-server
@@ -73,7 +76,7 @@
 				use:{
 					loader:'url-loader',
 					options:{
-						limit:100000,//如果图片小于10k，则转成base64
+						limit:10000,//如果图片小于10k，则转成base64
 						name: 'img/[name].[hash:8].[ext]'
 					}
 				}
@@ -95,6 +98,11 @@
         new HtmlWebpackPlugin({
             template:'./src/template.html'
         }),
+
+        // new HtmlWebpackPlugin({
+        //     template:'./src/template.html',
+        //     filename:'cart.html'
+        // }),
 
         // Vue-loader 15.x之后的版本都需要伴随 VueLoaderPlugin， 否则报错
         new VueLoaderPlugin(),

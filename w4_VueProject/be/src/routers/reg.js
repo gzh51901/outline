@@ -8,15 +8,24 @@ const express = require('express');
 const Router = express.Router();
 
 const db = require('../db');
-const {formatData} = require('../utils');
+const {formatData,md5} = require('../utils');
 
 // 集合名称
 const colName = 'user';
 
 
+// 注册用户
 Router.post('/',async (req,res)=>{
     let {username,password} = req.body;
+
+    console.log('加密前：',password)
+
+    // 利用md5加密密码
+
+    password = md5(password);
     
+    console.log('加密后：',password)
+
     let result = {}
     try{
         result = await db.create(colName,{username,password,regtime:Date.now()});
@@ -28,6 +37,7 @@ Router.post('/',async (req,res)=>{
     res.send(result);
 });
 
+// 检测用户是否已注册
 Router.get('/check',async (req,res)=>{
     let {username} = req.query;console.log('myquery:',req.query)
     

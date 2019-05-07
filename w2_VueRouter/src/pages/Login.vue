@@ -47,7 +47,20 @@ export default {
         console.log(valid);
         // 是否通过验证
         if (valid) {
-          this.$message("登录成功");
+          let {username,password} = this.ruleForm
+          this.$axios.get('/api/login',{
+            params:{
+              username,
+              password
+            }
+          }).then(({data})=>{
+            if(data.status===200){
+              this.$message("登录成功");
+              this.$router.replace('/home')
+            }else{
+              this.$message("用户名或密码错误");
+            }
+          })
         } else {
           console.log("error submit!!");
           return false;
