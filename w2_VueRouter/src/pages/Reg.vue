@@ -24,6 +24,7 @@
   </div>
 </template>
 <script>
+import CryptoJS from 'crypto-js';
 export default {
   name: "Reg",
   data() {
@@ -85,7 +86,20 @@ export default {
         if (valid) {
           this.$message("注册成功");
           // 发起请求，写入数据成功后跳转登录页面
-          let {username,password} = this.ruleForm
+          let {username,password} = this.ruleForm;
+
+          console.log('加密前：',password)
+
+          // 对password进行加密
+          let key = 'laoxie1234567890';//密钥
+          let iv = 'laoxielaoxie6666';//初始向量
+
+          key  = CryptoJS.enc.Utf8.parse(key);
+          iv   = CryptoJS.enc.Utf8.parse(iv);
+          var encrypted =CryptoJS.AES.encrypt(password,key,{iv});
+          password = encrypted.toString();    //返回的是base64格式的密文（后端要与之匹配）
+
+          console.log('加密后：',password)
           this.$axios
             .post("/api/reg", { username, password})
             .then(({ data }) => {

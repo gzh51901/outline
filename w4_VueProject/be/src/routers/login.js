@@ -2,12 +2,12 @@ const express = require('express');
 const Router = express.Router();
 
 const db = require('../db');
-const {formatData,md5} = require('../utils');
+const {formatData,md5,token} = require('../utils');
 
 const colName = 'user';
 
 Router.get('/',async (req,res)=>{
-    let {username,password} = req.query;
+    let {username,password,autoLogin} = req.query;
     console.log('加密前：',password)
 
     // 加密密码后再查询
@@ -19,7 +19,13 @@ Router.get('/',async (req,res)=>{
     try{
         result = await db.find(colName,{username,password});
         if(result.length>0){
-            result = formatData()
+            // 创建token
+            if(autoLogin){
+                let mytoken = token.create(username);
+                result = formatData({data:mytoken});
+            }else{
+                result = formatData();
+            }
         }else{
             result = formatData({status:400,msg:'用户名或密码错误'})
         }

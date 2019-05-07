@@ -8,15 +8,16 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start":"supervisor src/server"
+    "start": "supervisor src/server"
   },
   "keywords": [],
   "author": "laoxie",
   "license": "ISC",
   "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
     "express": "^4.16.4",
+    "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.2.3",
-    "request": "^2.88.0",
-    "cheerio": "^1.0.0-rc.3"
+    "request": "^2.88.0"
   }
 }

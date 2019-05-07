@@ -69,3 +69,11 @@
 * 版本
     * production    生产环境
     * development   开发环境
+
+### 面试题
+* npm常用命令
+    * npm init
+    * npm install
+    * npm run
+
+    

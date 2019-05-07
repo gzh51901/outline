@@ -1,5 +1,7 @@
 {
     "PORT":19011,
     "mongo":"mongodb://localhost:27017",
-    "database":"laoxie"
+    "database":"laoxie",
+    "key":"laoxie1234567890",
+    "iv":"laoxielaoxie6666"
 }

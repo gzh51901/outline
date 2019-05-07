@@ -8,7 +8,7 @@ const express = require('express');
 const Router = express.Router();
 
 const db = require('../db');
-const {formatData,md5} = require('../utils');
+const {formatData,md5,decrypt} = require('../utils');
 
 // 集合名称
 const colName = 'user';
@@ -18,13 +18,17 @@ const colName = 'user';
 Router.post('/',async (req,res)=>{
     let {username,password} = req.body;
 
-    console.log('加密前：',password)
+    console.log('前端加密：',password)
+
+    // 后端解密
+    password = decrypt(password)
+
+    console.log('后端密：',password)
 
     // 利用md5加密密码
-
     password = md5(password);
     
-    console.log('加密后：',password)
+    console.log('md5加密：',password)
 
     let result = {}
     try{

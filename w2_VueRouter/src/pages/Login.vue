@@ -47,16 +47,37 @@ export default {
         console.log(valid);
         // 是否通过验证
         if (valid) {
-          let {username,password} = this.ruleForm
-          this.$axios.get('/api/login',{
-            params:{
+          let {username,password,autoLogin} = this.ruleForm;
+
+          // if(this.ruleForm.autoLogin){
+          //   // 获取本地token
+          //   let token = localStorage.getItem('Authorization');//null/string
+
+          //   // 判断本地是否存在token
+          //   if(token){
+          //     // 校验token判断是否过期
+          //   }
+          // }
+          
+          let params = {
               username,
               password
             }
+          if(autoLogin){
+            params.autoLogin = 1
+          }
+          this.$axios.get('/api/login',{
+            params
           }).then(({data})=>{
             if(data.status===200){
               this.$message("登录成功");
-              this.$router.replace('/home')
+              this.$router.replace('/home');
+
+              if(typeof data.data === 'string'){
+
+                // 保存token
+                localStorage.setItem('Authorization',data.data);
+              }
             }else{
               this.$message("用户名或密码错误");
             }
