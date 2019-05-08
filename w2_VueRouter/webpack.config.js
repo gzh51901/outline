@@ -38,6 +38,13 @@
                     "^/api" : "/"
                 }
             },
+            '/jiuxian/*':{
+                "target": "https://m.jiuxian.com", //目标服务器
+                "changeOrigin": true,
+                "pathRewrite": {
+                    "^/jiuxian" : "/"
+                }
+            }
         }
     },
 

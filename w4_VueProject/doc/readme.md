@@ -120,3 +120,19 @@
         * 触发mutations：this.$store.commit('fn',{})
 
 * Vuex模块化
+    * modules
+
+* 路由拦截
+    * 在进入路由前拦截
+* 刷新状态保存
+* token有效期验证
+    * 请求拦截
+        * 请求拦截
+        * 响应拦截
+
+* Promise
+    * new Promise((resolve,reject)=>{})
+    * Promise.all([xxx,xxx,xx])
+    * Promise.race([xxx,xx,xx])
+    * Promise.resolve(obj)
+    * Promise.reject(obj)

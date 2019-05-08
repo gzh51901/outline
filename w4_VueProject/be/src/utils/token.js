@@ -10,7 +10,7 @@ const jwt = require('jsonwebtoken');
 const {key:secret} = require('../config.json');
 
 // 生成token：加密
-exports.create = (username,expiresIn='2h')=>{
+exports.create = (username,expiresIn=30)=>{
    // username: 用于加密的用户名
    // expires: token有效期(单位: s)，默认2小时
 

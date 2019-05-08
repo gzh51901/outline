@@ -41,6 +41,10 @@ const router = new VueRouter({
         props:function(route){//<Cart v-bind="{username:'lemon',age:38}"/>
             // 为所欲为
             return {username:'lemon',age:38}
+        },
+        meta:{
+            //自定义属性：当前路由需要登录后才能访问
+            requiresAuth:true
         }
     },
     {
@@ -49,23 +53,27 @@ const router = new VueRouter({
     },
     {
         name:'List',
-        path:'/list/:category',
+        path:'/list',
+        // path:'/list/:category',
         beforeEnter(to,from,next){
             console.log('beforeEnter');
             next();
         },
         component:List,
-        // children:[{
-        //     // 当浏览器地址为/list/phone 渲染Phone组件
-        //     path:'phone',
-        //     component:Phone
-        // },{
-        //     path:'computer',
-        //     component:Computer
-        // },{
-        //     path:'pad',
-        //     component:Pad
-        // }]
+        children:[{
+            // 当浏览器地址为/list/phone 渲染Phone组件
+            path:'phone',
+            component:Phone,
+            meta:{
+                requiresAuth:true
+            }
+        },{
+            path:'computer',
+            component:Computer
+        },{
+            path:'pad',
+            component:Pad
+        }]
     },{
         name:'Goods',
         path:'/goods/:id',//动态路由
@@ -84,11 +92,30 @@ const router = new VueRouter({
 
 // 全局路由守卫
 router.beforeEach((to,from,next)=>{
-    console.log('beforeEach');
-    // 获取token->校验token
-    // 有效：放行
-    // 过期：返回login页面
-    next();
+    console.log('to:',router.app.$axios)
+    // 判断当前路由是否需要登录
+   if(to.matched.some(record=>record.meta.requiresAuth)){
+
+       let token = localStorage.getItem('Authorization');
+       if(token){
+            router.app.$axios.get('/api/verify',{
+                headers:{
+                    Authorization:'token '+token
+                }
+            })
+           next();
+       }else{
+            next({
+                path:'/login',
+                query:{
+                    redirect:to.fullPath
+                }
+            });
+       }
+   }else{
+       next()
+   }
+    
 })
 router.afterEach((to,from)=>{
     console.log('afterEach')

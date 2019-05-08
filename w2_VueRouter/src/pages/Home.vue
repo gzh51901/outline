@@ -41,7 +41,7 @@ export default {
     console.log('this',this)
     // 发起ajax请求，返回promise对象
     this.$axios
-      .get("https://m.jiuxian.com/m_v1/promote/qgajax.do", {
+      .get("/jiuxian/m_v1/promote/qgajax.do", {
         params: {
           t: 1556593492897,
           pagenum: 1,

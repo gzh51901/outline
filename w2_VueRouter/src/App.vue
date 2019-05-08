@@ -45,6 +45,8 @@ import "element-ui/lib/theme-chalk/index.css";
 import './sass/common.scss';
 Vue.use(ElementUI);
 
+import {mapState,mapMutations} from 'vuex';
+
 export default {
   data: function() {
     return {
@@ -78,22 +80,31 @@ export default {
     };
   },
   computed:{
-      cartLen(){
-          return this.$store.state.cart.goodslist.length
-      },
-      isLogin(){
-        return this.$store.state.common.loginStatus
-      }
+      ...mapState({
+        isLogin(state){
+          return state.common.loginStatus
+        },
+        cartLen(state){
+          return state.cart.goodslist.length
+        }
+      })
   },
   methods:{
+    ...mapMutations({
+      logout(commit){
+          commit('logout')
+          localStorage.removeItem('Authorization');
+      }
+    }),
     goto(path){
       this.$router.push(path)
     },
-    logout(){
-      // 退出：清除token,修改loginStatus
-      this.$store.commit('updateToken','');
-      this.$store.commit('updateLoginStatus',false);
-    }
+    
+    // logout(){
+    //   // 退出：清除token,修改loginStatus
+    //   this.$store.commit('logout');
+    //   localStorage.removeItem('Authorization');
+    // }
   },
   mounted(){
     console.log('store:',this.$store)

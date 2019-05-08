@@ -30,7 +30,7 @@ export default {
       ruleForm: {
         password: "",
         username: "",
-        autoLogin:false
+        autoLogin: false
       },
       rules: {
         username: [
@@ -47,7 +47,7 @@ export default {
         console.log(valid);
         // 是否通过验证
         if (valid) {
-          let {username,password,autoLogin} = this.ruleForm;
+          let { username, password, autoLogin } = this.ruleForm;
 
           // if(this.ruleForm.autoLogin){
           //   // 获取本地token
@@ -58,36 +58,43 @@ export default {
           //     // 校验token判断是否过期
           //   }
           // }
-          
+
           let params = {
-              username,
-              password
-            }
-          if(autoLogin){
-            params.autoLogin = 1
+            username,
+            password
+          };
+          if (autoLogin) {
+            params.autoLogin = 1;
           }
-          this.$axios.get('/api/login',{
-            params
-          }).then(({data})=>{
-            if(data.status===200){
-              this.$message("登录成功");
-              this.$router.replace('/home');
+          this.$axios
+            .get("/api/login", {
+              params
+            })
+            .then(({ data }) => {
+              if (data.status === 200) {
+                this.$message("登录成功");
 
-              if(typeof data.data === 'string'){
+                if (typeof data.data === "string") {
+                  let token = data.data;
 
-                let token = data.data
+                  // 保存token到本地
+                  localStorage.setItem("Authorization", token);
 
-                // 保存token到本地
-                localStorage.setItem('Authorization',token);
+                  // 保存token到store
+                  this.$store.commit("login", token);
+                }
 
-                // 保存token到store
-                this.$store.commit('updateToken',token);
-                this.$store.commit('updateLoginStatus',true);
+                // 登录成功后跳转目标页面/否则跳转首页
+                console.log(this.$route.query.redirect);
+                if (this.$route.query.redirect) {
+                  this.$router.replace(this.$route.query.redirect);
+                } else {
+                  this.$router.replace("/home");
+                }
+              } else {
+                this.$message("用户名或密码错误");
               }
-            }else{
-              this.$message("用户名或密码错误");
-            }
-          })
+            });
         } else {
           console.log("error submit!!");
           return false;

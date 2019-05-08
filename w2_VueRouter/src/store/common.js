@@ -9,11 +9,14 @@ export default {
         loginStatus: false
     },
     mutations: {
-        updateToken(state, token) {
+        login(state, token) {
             state.token = token
+            state.loginStatus = true
         },
-        updateLoginStatus(state, status){
-            state.loginStatus = status
+        logout(state){
+            state.token = ''
+            state.loginStatus = false;
+
         }
     }
 }
