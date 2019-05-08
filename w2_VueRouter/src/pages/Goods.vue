@@ -32,7 +32,7 @@ export default {
         add2cart(){
             let {proId, proName, proPrice, proImg} = this.goods;
             // 判断商品是否已经添加到购物车：是->qty++, 否：qty=1
-            let has = this.$store.state.goodslist.filter(goods=>goods.proId==proId)[0];
+            let has = this.$store.state.cart.goodslist.filter(goods=>goods.proId==proId)[0];
             if(has){
                 this.$store.commit('changeQty',{proId,qty:has.qty+1})
             }else{

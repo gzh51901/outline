@@ -76,4 +76,47 @@
     * npm install
     * npm run
 
-    
+* token : 
+    * 静默登录：自动更新token
+
+## day4-3
+
+### 面试题
+
+* el,template,render
+* 监听不进入生命周期的组件切换
+    * watch
+    * 路由守卫
+
+### 知识点回顾
+* 加密解密
+* 安全问题
+
+### 知识点
+* Vuex
+    * 使用步骤
+        * 生成store
+        * 注入store
+    * store
+        * state
+            token
+        * getters       computed(getter,setter)
+            fn(state)
+        * mutations    methods
+            fn(state,payload)
+        * actions   用来触发mutaions
+            fn(context,payload){
+                this.$axios.get().then(res=>{
+
+                    context.commit('fn',)
+                })
+            }
+                
+        * 方法
+            * commit('mutaions')
+            * dispatch('action')
+
+    * 修改state
+        * 触发mutations：this.$store.commit('fn',{})
+
+* Vuex模块化

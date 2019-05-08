@@ -20,7 +20,7 @@
 </template>
 <script>
 export default {
-  props:['username'],
+  // props:['username'],
   data() {
     return {
       recommed: [],

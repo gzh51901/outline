@@ -10,9 +10,12 @@
             <el-button slot="append" type="success" icon="el-icon-search"></el-button>
           </el-input>
         </el-col>
-        <el-col :span="4" class="login-bar">
+        <el-col :span="4" class="login-bar" v-show="!isLogin">
           <el-button type="text" @click="goto('/reg')">注册</el-button>
           <el-button type="text" @click="goto('/login')">登录</el-button>
+        </el-col>
+        <el-col :span="4" class="login-bar" v-show="isLogin">
+          <el-button type="text" @click="logout">退出</el-button>
         </el-col>
       </el-row>
     </el-header>
@@ -76,13 +79,25 @@ export default {
   },
   computed:{
       cartLen(){
-          return this.$store.state.goodslist.length
+          return this.$store.state.cart.goodslist.length
+      },
+      isLogin(){
+        return this.$store.state.common.loginStatus
       }
   },
   methods:{
     goto(path){
       this.$router.push(path)
+    },
+    logout(){
+      // 退出：清除token,修改loginStatus
+      this.$store.commit('updateToken','');
+      this.$store.commit('updateLoginStatus',false);
     }
+  },
+  mounted(){
+    console.log('store:',this.$store)
+    // 获取token->验证token是否已经过期
   }
 };
 </script>

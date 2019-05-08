@@ -33,7 +33,7 @@ const router = new VueRouter({
         name:'Home',
         path:'/home',
         component:Home,
-        props:{username:'laoxie',age:18},//<Home v-bind="{username:'laoxie',age:18}"/>
+        // props:{username:'laoxie',age:18},//<Home v-bind="{username:'laoxie',age:18}"/>
     },{
         name:'Cart',
         path:'/cart',
@@ -85,6 +85,9 @@ const router = new VueRouter({
 // 全局路由守卫
 router.beforeEach((to,from,next)=>{
     console.log('beforeEach');
+    // 获取token->校验token
+    // 有效：放行
+    // 过期：返回login页面
     next();
 })
 router.afterEach((to,from)=>{

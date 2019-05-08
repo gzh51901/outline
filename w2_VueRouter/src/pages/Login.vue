@@ -75,8 +75,14 @@ export default {
 
               if(typeof data.data === 'string'){
 
-                // 保存token
-                localStorage.setItem('Authorization',data.data);
+                let token = data.data
+
+                // 保存token到本地
+                localStorage.setItem('Authorization',token);
+
+                // 保存token到store
+                this.$store.commit('updateToken',token);
+                this.$store.commit('updateLoginStatus',true);
               }
             }else{
               this.$message("用户名或密码错误");

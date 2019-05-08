@@ -26,10 +26,10 @@ export default {
     computed:{
         goodslist(){
             // state有修改，自动更新goodslist -> view更新
-            return this.$store.state.goodslist
+            return this.$store.state.cart.goodslist
         },
         totalPrice(){
-            return this.$store.state.goodslist.reduce((prev,item)=>prev+item.proPrice*item.qty,0)
+            return this.$store.state.cart.goodslist.reduce((prev,item)=>prev+item.proPrice*item.qty,0)
         }
     },
     methods:{
