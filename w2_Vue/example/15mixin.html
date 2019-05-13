@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>15Mixin</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <h1>15Mixin</h1>
+    <div id="app">
+        <my-header/>
+    </div>
+    <script>
+        /**
+         * mixin：组件公共配置
+            * 全局：Vue.mixin(options)
+            * 局部：mixins:[mixin]
+         */
+
+        // 全局mixin
+        // Vue.mixin({
+        //     // mixin的配置选项与组件一致
+        //     data(){
+        //         return {
+        //             name:'laoxie',
+        //             nickname:'Mixin'
+        //         }
+        //     },
+        //     mounted(){
+        //         // console.log('in mixin:',this.nickname,this.name)
+        //     }
+        // })
+
+
+        // 局部mixins
+        let myMixin = {
+            data(){
+                return {
+                    nickname:'Mixin'
+                }
+            },
+            mounted(){
+                // console.log('in mixin:',this.nickname,this.name)
+            }
+        }
+
+        Vue.component('myHeader',{
+            data(){
+                return {
+                    name:'myHeader'
+                }
+            },
+            template:`<div><my-button></my-button></div>`,
+            components:{
+                myButton:{
+                    data(){
+                        return {
+                            name: 'myButton'
+                        }
+                    },
+                    mixins:[myMixin],
+                    mounted(){
+                        console.log('in myButton：',this.name,this.nickname)
+                    },
+                    template:`<button class="sub">myButton</button>`
+                }
+            },
+            mounted(){
+                console.log('in myHeader:',this.name,this.nickname)
+            }
+        })
+        let vm = new Vue({
+            data:{
+                name:'vm'
+            },
+            mounted(){
+                console.log('in vm：',this.name,this.nickname)
+            }
+        })
+
+        vm.$mount('#app')
+    </script>
+</body>
+</html>

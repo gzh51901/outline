@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>16插件</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <h1>16插件</h1>
+    <div id="app">
+       <router-link to="/cart">购物车</router-link>
+    </div>
+    <script>
+        /**
+         * 16插件
+            * 函数
+            * 对象
+                * install
+         */
+
+        //  定义插件
+        // let VueRouter = {
+        //     install(Vue,options={}){
+        //         console.log(Vue,options)
+        //         // 定义全局组件
+        //     }
+        // }
+
+        let VueRouter = (Vue,options={})=>{
+            console.log(Vue,options);
+
+            // 定义全局组件
+            Vue.component('router-link',{
+                props:['to'],
+                template:`<a :href="'#'+to"><slot/></a>`
+            });
+            Vue.component('router-view',{
+                props:['name'],
+                data(){
+                    return {
+                        currentPage:''
+                    }
+                },
+                mounted(){
+                    let hash = window.location.hash.slice(1);
+                    console.log(hash)
+                    let content = '404';
+                    switch(hash){
+                        case '/home':
+                        content = '首页'
+                        break;
+                        case '/list':
+                        content = '列表页'
+                        break;
+                        case '/cart':
+                        content = '购物车'
+                        break;
+                        case '/goods':
+                        content = '详情页'
+                        break;
+                    }
+
+                    window.onhashchange = ()=>{
+                        // 获取hash值
+                        let hash = window.location.hash.slice(1);
+                        console.log(hash)
+                        let content = '404';
+                        switch(hash){
+                            case '/home':
+                            content = '首页'
+                            break;
+                            case '/list':
+                            content = '列表页'
+                            break;
+                            case '/cart':
+                            content = '购物车'
+                            break;
+                            case '/goods':
+                            content = '详情页'
+                            break;
+
+                        }
+                        
+                        this.currentPage = content
+                    }
+                },
+                template:`<div><component :is="currentPage"/></div>`
+            })
+        }
+
+
+        // 使用插件
+        Vue.use(VueRouter);
+
+        new Vue({
+            el:'#app'
+        })
+
+
+        // hash路由的原理
+        window.onhashchange = ()=>{
+            // 获取hash值
+            let hash = window.location.hash.slice(1);
+            console.log(hash)
+            let content = '404';
+            switch(hash){
+                case '/home':
+                content = '首页'
+                break;
+                case '/list':
+                content = '列表页'
+                break;
+                case '/cart':
+                content = '购物车'
+                break;
+                case '/goods':
+                content = '详情页'
+                break;
+
+            }
+           document.getElementById('app').innerHTML = content;
+        }
+
+        // 刷新保持当前页面
+        document.onreadystatechange = ()=>{
+            let hash = window.location.hash.slice(1);
+            console.log(hash)
+            let content = '404';
+            switch(hash){
+                case '/home':
+                content = '首页'
+                break;
+                case '/list':
+                content = '列表页'
+                break;
+                case '/cart':
+                content = '购物车'
+                break;
+                case '/goods':
+                content = '详情页'
+                break;
+
+            }
+           document.getElementById('app').innerHTML = content;
+        }
+    </script>
+</body>
+</html>

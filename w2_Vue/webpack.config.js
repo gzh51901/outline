@@ -5,6 +5,7 @@
 
  const path = require('path');
  const HtmlWebpackPlugin = require('html-webpack-plugin');
+ const CleanWebpackPlugin = require('clean-webpack-plugin');
  const { VueLoaderPlugin } = require('vue-loader');
 
  // 导出配置模块
@@ -15,7 +16,7 @@
      // 输出配置：上线
      output:{
         path:path.resolve(__dirname,'./dist'),
-        filename:'js/[name]-bundle.js'
+        filename:'js/[name]-[hash]-bundle.js'
     },
 
     // 服务器webpack-dev-server
@@ -65,10 +66,16 @@
     },
 
     plugins:[
+        // 清除多余文件
+        // new CleanWebpackPlugin(),
+
         // 依据html模板生成一个自动引用你打包后的文件（js或css）的新的html页面
         new HtmlWebpackPlugin({
-            template:'./src/template.html'
+            template:'./src/template.html',
+
         }),
+
+
 
         // Vue-loader 15.x之后的版本都需要伴随 VueLoaderPlugin， 否则报错
         new VueLoaderPlugin(),
