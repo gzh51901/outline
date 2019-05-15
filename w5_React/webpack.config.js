@@ -6,7 +6,7 @@ const CleanWepackPlugin = require('clean-webpack-plugin');
 module.exports = {
     // 入口
     entry:{
-        main:'./src/app.js'
+        main:'./src/main.js'
     },
 
     // 出口

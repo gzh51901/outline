@@ -1,56 +1,21 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+/**
+    * 组件
+        * 函数组件
+            * 必须有返回值
+        * 类组件
+            * 
+    * 组件传参
+        * 父->子：
+ */
 
+ import React from 'react';
 
-// JSX
+ import Home from './pages/Home';
 
-// <div>
-//     <h1>免费登录</h1>
-//     <div class="form-group">
-//         <label for="username">用户名：</label>
-//         <input type="text" name="username"/>
-//     </div>
-//     <div class="form-group">
-//         <label for="password">密码：</label>
-//         <input type="password" name="password"/>
-//     </div>
-//     <div class="form-group">
-//          <button>登录</button>
-//     </div>
-// </div>
+ function App(){
+    return <div className="myapp">
+        <Home username="laoxie"/>
+    </div>
+ }
 
-// ReactDOM.render(
-//     React.createElement('div',{className:'from'},[
-//         React.createElement('h1',{},'免费登录'),
-//         React.createElement('div',{className:'form-group'},[
-//             React.createElement('label',{htmlFor:'username'},'用户名：'),
-//             React.createElement('input',{name:'username',type:'text'})
-//         ])
-//     ]),
-//     document.getElementById('app')
-// )
-
-
-let username = 'laoxie';
-
-function changeusername(e){
-    username = e.target.value
-}
-
-ReactDOM.render(
-    <div>
-        <h1>免费登录</h1>
-        <div className="form-group">
-            <label htmlFor="username">用户名：</label>
-            <input type="text" name="username" value={username} onChange={changeusername} autoFocus/>
-        </div>
-        <div className="form-group">
-            <label htmlFor="password">密码：</label>
-            <input type="password" name="password"/>
-        </div>
-        <div class="form-group">
-            <button>登录</button>
-        </div>
-    </div>,
-    document.getElementById('app')
-)
+ export default App;
