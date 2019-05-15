@@ -46,3 +46,25 @@
         children:''
     }]}
 
+### 组件
+* 函数组件（UI组件，受控组件，无状态组件）
+    * 纯函数
+    * 在函数参数中获取props
+* 类组件（容器组件，非受控组件，有状态组件）
+    * state
+    * 必须有render方法
+    * this指向
+        * 箭头函数
+    * 通过this.props获取
+
+PS:能用函数组件就不要用类组件
+
+### props VS state
+* props: 外部传入
+    * 无法修改
+* state: 类组件私有
+    * 修改方式：this.setState()
+
+PS: props和state的修改都会刷新视图
+
+* 强制刷新：this.forceUpdate(callback)

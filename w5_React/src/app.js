@@ -1,21 +1,15 @@
-/**
-    * 组件
-        * 函数组件
-            * 必须有返回值
-        * 类组件
-            * 
-    * 组件传参
-        * 父->子：
- */
+import React,{Component} from 'react';
 
- import React from 'react';
+import TodoList from './pages/TodoList';
 
- import Home from './pages/Home';
+class App extends Component{
+    render(){
+        return (
+            <div className="container">
+                <TodoList/>
+            </div>
+        )
+    }
+}
 
- function App(){
-    return <div className="myapp">
-        <Home username="laoxie"/>
-    </div>
- }
-
- export default App;
+export default App;

@@ -32,16 +32,17 @@ module.exports = {
     module:{
 		rules:[
             {
-				test:/\.js$/,
+				test:/\.js|jsx$/,
 				exclude:path.resolve(__dirname,'./node_modules'),//排除node_modules目录
 				
 				use:[{
                     loader:'babel-loader',
                     options:{
-                        presets:['@babel/react'],
-                        // plugins: [
-                        //     ["import", { libraryName: "antd-mobile", style: "css" }] // `style: true` 会加载 less 文件
-                        // ]
+                        presets:['@babel/react','@babel/env'],
+                        plugins: [
+                            '@babel/proposal-class-properties'
+                            // ["import", { libraryName: "antd-mobile", style: "css" }] // `style: true` 会加载 less 文件
+                        ]
                     }
 				}]
             },
