@@ -53,6 +53,16 @@ module.exports = {
 			{
 				test:/\.scss$/,
 				loader:['style-loader','css-loader','sass-loader']
+            },
+            {
+				test:/\.(?:jpe?g|png|gif)$/,
+				use:{
+					loader:'url-loader',
+					options:{
+						limit:10000,
+						name: 'img/[name].[hash:8].[ext]'
+					}
+				}
 			}
         ]
     },
