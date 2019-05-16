@@ -68,3 +68,48 @@ PS:能用函数组件就不要用类组件
 PS: props和state的修改都会刷新视图
 
 * 强制刷新：this.forceUpdate(callback)
+
+## day5-4
+
+### 复习
+* 组件
+    * 函数组件
+    * 类组件（容器组件）
+        * class
+        * extends React.Component
+            * super
+        * state
+            * 状态提升
+            * this.setState()
+
+* 组件通讯
+    * props
+
+
+* state VS props
+
+* 事件
+    * 事件名使用驼峰：onClick, onKeyDown
+    * 事件处理函数
+        * this
+            * bind()
+            * 箭头函数
+        * event
+            * 在最后一个参数传入事件处理函数
+
+### 知识点
+* context
+    * 要使用context，必须为类组件
+    * 旧版
+        1. 父组件定义数据
+        2. 父组件校验context属性
+        3. 子组件校验context属性
+        4. 子组件通过this.context获取共享数据
+    * 新版
+        * let Mycontext = React.createContext(default)
+        * <Mycontext.Provider value="xxx">
+        * 子组件设置静态属性：TodoItem.contextType = MyContext
+        * this.context获取
+    
+
+* 属性校验

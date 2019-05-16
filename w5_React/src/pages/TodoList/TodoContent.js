@@ -2,7 +2,7 @@ import React from 'react';
 
 import TodoItem from './TodoItem';
 
-function TodoContent({data}){
+function TodoContent({data,removeItem,completeItem}){
     return (
         <table className="todo-list">
             <thead>
@@ -17,7 +17,13 @@ function TodoContent({data}){
             <tbody>
             {
                 // 列表
-                data.map((item,idx)=><TodoItem data={item} idx={idx} key={item.id}/>)
+                data.map((item,idx)=><TodoItem 
+                data={item} 
+                idx={idx} 
+                key={item.id}  
+                removeItem={removeItem} 
+                completeItem={completeItem}
+                />)
             }
             </tbody>
         </table>
