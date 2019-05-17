@@ -113,3 +113,79 @@ PS: props和state的修改都会刷新视图
     
 
 * 属性校验
+
+
+## day5-5
+
+### 复习
+* 组件通讯
+    * props
+        * 传递事件处理函数(谁的数据谁修改)
+        * children
+    * state状态提升
+    * context
+        * 旧版（实验性）
+        * 新版
+            1. let xxx = React.createContext(default)
+            2. 父组件：<xxx.Provider vaule="xxx">
+            3. 子组件设置静态属性contextType = xxx
+            3. 子组件：
+            ```jsx
+                <xxx.Consumer>
+                    {
+                        value=>{
+                            // 这里的value就是Provider提供的value值
+                        }
+                    }
+                </xxx.Consumer>
+            ```
+* 生命周期：init -> mounting -> updating -> unMounting
+    1. 初始化：constructor()
+    2. 挂载
+        * componentWillMount
+        * componentDidMount
+    3. 更新：props,state
+        ?* props更新：componentWillReceiveProps
+        * shouldComponentUpdate
+        * componentWillUpdate
+        * componentDidUpdate
+    4. 卸载
+        * componentWillUnmount
+
+* 路由（RR4）：一切皆组件
+    * 安装
+        * react-router
+        * react-router-dom 
+    * 使用
+        * <Route/>
+            * path
+            * component
+            * render
+        * <Switch/>
+        * <HashRouter/> or <BrowserRouter/>
+        * <Redirect>
+            * from
+            * to
+
+    * 导航
+        * 声明式导航：
+            * <Link/>
+            * <NavLink/>
+                * to
+                * activeClassName
+                * activeStyle
+        * 编程式导航
+
+* 动态路由
+* 嵌套路由
+
+* React内联样式（推荐）
+    * 必须使用对象
+    * 属性名必须使用小驼峰
+
+### 知识点
+* 编程式导航
+* 高阶组件
+    * 高阶组件就是一个包装函数
+
+    
