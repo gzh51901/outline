@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 
-import {HashRouter,BrowserRouter,Route,Redirect,Switch,NavLink,withRouter} from 'react-router-dom';
+import {Route,Redirect,Switch,withRouter} from 'react-router-dom';
 
 import Home from './pages/Home';
 import List from './pages/List';
@@ -9,6 +9,7 @@ import Cart from './pages/Cart';
 import Login from './pages/Login';
 import Reg from './pages/Reg';
 
+@withRouter
 class App extends Component{
     constructor(){
         super();
@@ -52,7 +53,7 @@ class App extends Component{
 
                 <ul>
                     {
-                        this.state.pages.map(item=><li onClick={this.goto.bind(this,item)}>
+                        this.state.pages.map(item=><li key={item.name} onClick={this.goto.bind(this,item)}>
                             {/* <NavLink 
                             to={item.path}
                             activeStyle={{color:'#f00',fontWeight:'bold'}}
@@ -76,6 +77,6 @@ class App extends Component{
     }
 }
 
-App = withRouter(App);
+// App = withRouter(App);
 
 export default App;

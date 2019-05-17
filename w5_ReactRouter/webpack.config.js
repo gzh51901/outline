@@ -40,7 +40,13 @@ module.exports = {
                     options:{
                         presets:['@babel/react','@babel/env'],
                         plugins: [
-                            '@babel/proposal-class-properties'
+                            [
+                                "@babel/proposal-decorators",
+                                {
+                                  "legacy": true
+                                }
+                            ],
+                            '@babel/proposal-class-properties',
                             // ["import", { libraryName: "antd-mobile", style: "css" }] // `style: true` 会加载 less 文件
                         ]
                     }

@@ -187,5 +187,27 @@ PS: props和state的修改都会刷新视图
 * 编程式导航
 * 高阶组件
     * 高阶组件就是一个包装函数
+    ```js
+        // withRouter
+        // App = withRouter(App)
 
-    
+        function withRouter(MyConponent){
+            return class ContainerComponent extends{
+                ///
+                render(){
+                    return <MyConponent history location match/>
+                }
+            }
+        }
+    ```
+
+### 面试题
+* 函数防抖
+    * 对于多次操作，只执行第一次操作（忽略第一次后所有操作）
+    * 案例
+        * 懒加载
+* 函数节流
+    * 对于多次操作，只执行最后一次操作
+    * 案例
+        * 搜索建议
+        * 动画
