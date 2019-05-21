@@ -1,10 +1,10 @@
 import React,{Component} from 'react';
+import {connect} from 'react-redux';
 
-import store from '../store'
 
 class Cart extends Component{
   render(){
-    let {goodslist} = store.getState();
+    let {goodslist} = this.props
     return (
       <div>
         <ul>
@@ -21,4 +21,9 @@ class Cart extends Component{
     )
   }
 }
+
+Cart = connect(state=>({
+  goodslist:state.goodslist
+}))(Cart)
 export default Cart;
+

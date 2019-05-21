@@ -2,7 +2,8 @@ import React,{Component} from 'react';
 
 import {getData} from '../api';
 
-import store from '../store';
+import {connect} from 'react-redux';
+
 
 class Goods extends Component{
     state = {
@@ -30,10 +31,6 @@ class Goods extends Component{
             commend:goods.goods_commend_list
         })
 
-        console.log('init:',store.getState())
-        store.subscribe(()=>{
-            console.log('change:',store.getState())
-        })
     }
 
     shouldComponentUpdate(nextProps, nextState){
@@ -41,7 +38,7 @@ class Goods extends Component{
     }
 
     add2cart =()=>{
-        let {goodslist} = store.getState();
+        let {goodslist,dispatch} = this.props
         let {imgurl} = this.state.goods
         let {goods_id,goods_name,goods_promotion_price:price} = this.state.goods.info;
 
@@ -50,7 +47,7 @@ class Goods extends Component{
         // 不存在：add_to_cart
         let has = goodslist.filter(item=>item.goods_id === goods_id)[0]
         if(has){
-            store.dispatch({
+            dispatch({
                 type:'CHANGE_QTY',
                 payload:{
                     goods_id,
@@ -59,7 +56,7 @@ class Goods extends Component{
             })
         }else{
 
-            store.dispatch({
+            dispatch({
                 type:'ADD_TO_CART',
                 payload:{
                     goods_id,
@@ -93,4 +90,8 @@ class Goods extends Component{
         )
     }
 }
+
+Goods = connect(state=>({
+    goodslist:state.goodslist
+}))(Goods);
 export default Goods;

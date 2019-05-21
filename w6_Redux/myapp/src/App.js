@@ -1,12 +1,13 @@
 import React,{Component} from 'react';
 
 import {Switch,Route,Redirect,withRouter} from 'react-router-dom';
+import {connect} from 'react-redux'
 
 import Home from './pages/Home';
 import Goods from './pages/Goods';
 import Cart from './pages/Cart';
 
-import store from './store';
+// import store from './store';
 
 
 class App extends Component{
@@ -33,7 +34,9 @@ class App extends Component{
     history.push(item.path)
   }
   render(){
-    let {goodslist} = store.getState();
+    // let {goodslist} = store.getState();
+    let {goodslist} = this.props
+    console.log('App.props:',this.props)
     return (
       <div>
         {
@@ -50,4 +53,13 @@ class App extends Component{
     )
   }
 }
-export default withRouter(App);
+App = withRouter(App);
+let mapStateToProps = (state)=>{
+// 等效于 <App v-bind={username:'laoxie',age:18}/>
+  return {
+    // 返回对象的属性就是传入组件的props属性
+    goodslist:state.goodslist
+  }
+}
+App = connect(mapStateToProps)(App);
+export default App;
