@@ -54,3 +54,8 @@
 ### 知识点
 * 在Vue中写入html内容：v-html="<h1></h1>";
 * 在React中写入html内容：dangerouslySetInnerHTML={{__html:'<h1></h1>'}}
+
+
+## day6-2
+* react-redux
+    * connect高阶组件：用于连接React组件与store

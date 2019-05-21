@@ -3,6 +3,7 @@ import React,{Component} from 'react';
 import {getData} from '../api';
 
 import {connect} from 'react-redux';
+import {Button} from 'antd-mobile';
 
 
 class Goods extends Component{
@@ -82,7 +83,7 @@ class Goods extends Component{
                         <del>{goods.info.goods_price}</del>
                         <span>{goods.info.goods_promotion_price}</span>
                     </p>
-                    <button onClick={this.add2cart}>添加到购物车</button>
+                    <Button type="warning" onClick={this.add2cart}>添加到购物车</Button>
                 </div>
             </div>
             :

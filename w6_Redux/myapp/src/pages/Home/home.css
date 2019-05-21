@@ -1,0 +1,7 @@
+/* .home img{width:100px;} */
+
+.price span{color:#f00;}
+.price del{margin-right:10px;}
+.price del::before,.price span::before{
+    content:'￥'
+}

@@ -8,7 +8,7 @@ const reducer = (state=defaultState,{type,payload})=>{
         case 'ADD_TO_CART':
             return {
                 ...state,
-                goodslist:[...state.goodslist,payload]
+                goodslist:[payload,...state.goodslist]
             }
         case 'REMOVE_FROM_CART':
             return {
