@@ -1,21 +1,22 @@
+import {ADD_TO_CART,REMOVE_FROM_CART,CHANGE_QTY} from '../acions';
 
 let defaultState = {
     goodslist:[],
     totalPrice:0
 }
-const reducer = (state=defaultState,{type,payload})=>{
+const reducer = (state=defaultState,{type,payload})=>{console.log('payload:',payload)
     switch(type){
-        case 'ADD_TO_CART':
+        case ADD_TO_CART:
             return {
                 ...state,
                 goodslist:[payload,...state.goodslist]
             }
-        case 'REMOVE_FROM_CART':
+        case REMOVE_FROM_CART:
             return {
                 ...state,
                 goodslist:state.goodslist.filter(goods=>goods.goods_id!==payload)
             }
-        case 'CHANGE_QTY':
+        case CHANGE_QTY:
         return {
             ...state,
             goodslist:state.goodslist.map(goods=>{

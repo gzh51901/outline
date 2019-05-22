@@ -59,3 +59,44 @@
 ## day6-2
 * react-redux
     * connect高阶组件：用于连接React组件与store
+
+
+## day6-3
+
+### 复习
+* React
+* Redux
+    * store
+        * 创建 createStore(reducer)
+        * state 数据状态
+        * 方法
+            * store.getState()
+            * store.dispatch(action)
+            * store.subscribe(callback)
+    * action
+        * 命令/指令 
+        * 格式：{type,payload}
+        * actionCreator
+            * 一个函数，返回action
+    * reducer
+        * 实现定义好的state的修改方式
+* react-redux
+    * 利用context实现组件通讯
+    * <Provider store={}/>
+        * 用户给子组件提供store
+        * 作为最外层组件
+    *  connect(mapStateToProps[,mapDispatchToProps])(Component)
+
+### Vuex VS Redux
+
+            Vuex                Redux
+            store               store
+            state               state
+            getters             
+            mutation            reducer
+                commit              dispatch
+            actions             中间件
+
+* redux-saga
+    * Generator
+    function* show(){}

@@ -1,9 +1,12 @@
 import React,{Component} from 'react';
 
 import {getData} from '../api';
-
+import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {Button} from 'antd-mobile';
+
+// import {add2cart,changeQty} from '../acions';
+import cartActionCreators from '../acions';
 
 
 class Goods extends Component{
@@ -39,7 +42,7 @@ class Goods extends Component{
     }
 
     add2cart =()=>{
-        let {goodslist,dispatch} = this.props
+        let {goodslist,add2cart,changeQty} = this.props
         let {imgurl} = this.state.goods
         let {goods_id,goods_name,goods_promotion_price:price} = this.state.goods.info;
 
@@ -48,29 +51,21 @@ class Goods extends Component{
         // 不存在：add_to_cart
         let has = goodslist.filter(item=>item.goods_id === goods_id)[0]
         if(has){
-            dispatch({
-                type:'CHANGE_QTY',
-                payload:{
-                    goods_id,
-                    qty:has.qty+1
-                }
-            })
+            changeQty(goods_id,has.qty+1)
         }else{
 
-            dispatch({
-                type:'ADD_TO_CART',
-                payload:{
-                    goods_id,
-                    goods_name,
-                    price,
-                    imgurl,
-                    qty:1
-                }
+            add2cart({
+                goods_id,
+                goods_name,
+                price,
+                imgurl,
+                qty:1
             })
         }
     }
 
     render(){
+        console.log('Goods:',this)
         let {goods} = this.state;
         return (
             goods.info
@@ -92,7 +87,27 @@ class Goods extends Component{
     }
 }
 
-Goods = connect(state=>({
-    goodslist:state.goodslist
-}))(Goods);
+// Goods = connect(state=>({
+//     goodslist:state.goodslist
+// }),(dispatch)=>{
+//     return {
+//         add:goods=>{
+//             dispatch(add2cart(goods))
+//         },
+//         change:(id,qty)=>{console.log('qty:',qty)
+//             // changeQty()用于生成Action
+//             dispatch(changeQty(id,qty))
+//         }
+//     }
+// })(Goods);
+
+Goods = connect(
+    state=>({
+        goodslist:state.goodslist
+    }),
+
+    // 把actionCreators中所有export default出来的方法绑定给组件的props
+    // 并自动调用dispatch
+    dispatch=>bindActionCreators(cartActionCreators,dispatch)
+)(Goods);
 export default Goods;
