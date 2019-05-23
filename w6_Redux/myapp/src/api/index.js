@@ -9,7 +9,7 @@ function getData(url,options={}){
     return instance(url,options);
 }
 
-export {
+export default {
     getData,
     axios
 }

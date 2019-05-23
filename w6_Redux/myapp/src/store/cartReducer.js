@@ -1,4 +1,4 @@
-import {ADD_TO_CART,REMOVE_FROM_CART,CHANGE_QTY} from '../acions';
+import {ADD_TO_CART,REMOVE_FROM_CART,CHANGE_QTY} from '../acions/cart';
 
 let defaultState = {
     goodslist:[],

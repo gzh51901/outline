@@ -1,26 +1,43 @@
 import React,{Component} from 'react';
-import {getData} from '../../api';
+import Api from '../../api';
 
 import './home.css';
 import {List} from 'antd-mobile';
+
+import {connect} from 'react-redux';
 
 class Home extends Component{
   state = {
     goodslist:[]
   }
-  async componentDidMount(){
-    let {data:{datas:{goods_list:goodslist}}} = await getData('/index.php',{
-      params:{
-        act:'goods',
-        op:'goods_list',
-        gc_id:'',
-        page:'20'
-      }
-    });
-    console.log(goodslist);
+  async componentDidMount(){console.log('home.props:',this.props)
+    // let {data:{datas:{goods_list:goodslist}}} = await Api.getData('/index.php',{
+    //   params:{
+    //     act:'goods',
+    //     op:'goods_list',
+    //     gc_id:'',
+    //     page:'20'
+    //   }
+    // });
+    // console.log(goodslist);
 
-    this.setState({
-      goodslist
+    // this.setState({
+    //   goodslist
+    // })
+
+    this.props.dispatch({
+      type:'SAGA_GOODS_LIST',payload:
+      {
+        url:'/index.php',
+        options:{
+          params:{
+            act:'goods',
+            op:'goods_list',
+            gc_id:'',
+            page:'20'
+          }
+        }
+      }
     })
   }
   goto(id){
@@ -33,7 +50,7 @@ class Home extends Component{
       <div className="home">
         <List>
           {
-            this.state.goodslist.map(item=><List.Item 
+            this.props.goodslist.map(item=><List.Item 
             key={item.goods_id} 
             onClick={this.goto.bind(this,item.goods_id)}
             arrow="horizontal"
@@ -54,4 +71,10 @@ class Home extends Component{
     )
   }
 }
+
+Home = connect(state=>{
+  return {
+    goodslist:state.common.goodslist
+  }
+})(Home);
 export default Home;

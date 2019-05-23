@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 
 class Cart extends Component{
   render(){
+    
     let {goodslist} = this.props
     return (
       <div>
@@ -23,7 +24,7 @@ class Cart extends Component{
 }
 
 Cart = connect(state=>({
-  goodslist:state.goodslist
+  goodslist:state.cart.goodslist
 }))(Cart)
 export default Cart;
 

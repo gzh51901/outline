@@ -1,12 +1,12 @@
 import React,{Component} from 'react';
 
-import {getData} from '../api';
+import Api from '../api';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {Button} from 'antd-mobile';
 
 // import {add2cart,changeQty} from '../acions';
-import cartActionCreators from '../acions';
+import cartActionCreators from '../acions/cart';
 
 
 class Goods extends Component{
@@ -17,7 +17,7 @@ class Goods extends Component{
     async componentWillMount(){
         console.log(this.props)
         let {match:{params:{id}}} = this.props;
-        let {data:{datas:goods}} = await getData('/index.php',{
+        let {data:{datas:goods}} = await Api.getData('/index.php',{
             params:{
                 act:'goods',
                 op:'goods_detail',
@@ -103,7 +103,7 @@ class Goods extends Component{
 
 Goods = connect(
     state=>({
-        goodslist:state.goodslist
+        goodslist:state.cart.goodslist
     }),
 
     // 把actionCreators中所有export default出来的方法绑定给组件的props

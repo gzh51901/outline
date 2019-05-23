@@ -88,7 +88,7 @@ let mapStateToProps = (state) => {
   // 等效于 <App v-bind={username:'laoxie',age:18}/>
   return {
     // 返回对象的属性就是传入组件的props属性
-    goodslist: state.goodslist
+    goodslist: state.cart.goodslist
   }
 }
 App = connect(mapStateToProps)(App);
