@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <script type="text/javascript" charset="utf-8">
+		console.log('ok')
+		// 要调用h5+Api,必须等待plusready执行时才可调用
+		// 两种操作方式: mui.plusReady()
+		// document.onplusready = ()=>{}
+		mui.plusReady(()=>{console.log('plusReady')
+			// 页面初始化
+			mui.init();
+			
+			var $gallery = mui('.mui-slider');
+			$gallery.slider({
+			  interval:5000//自动轮播周期，若为0则不自动播放，默认为0；
+			});
+			
+			
+			// 获取设备默认的摄像头对象 
+			var cmr = plus.camera.getCamera();
+			
+			console.log( "分辨率: " + cmr.supportedImageResolutions );
+			console.log( "格式: " + cmr.supportedImageFormats);
+			
+			document.querySelector('#btnCapture').onclick = ()=>{
+				
+				cmr.captureImage(path=>{
+					let imgurl = plus.io.convertLocalFileSystemURL( path );
+					
+					let group = mui('.mui-slider .mui-slider-group')[0];
+					let item = document.createElement('div');
+					item.className = 'mui-slider-item';
+					let img = new Image();
+					img.src = imgurl;
+					item.appendChild(img)
+					group.appendChild(item)
+				})
+			}
+			
+			document.querySelector('#btnVideo').onclick = ()=>{
+				cmr.startVideoCapture(path=>{
+					console.log(path)
+				})
+			};
+			
+		})
+		
+// 		document.addEventListener( "plusready", onPlusReady, false );
+// 		
+// 		function onPlusReady(){
+// 			mui.init();
+// 			
+// 			let camera = plus.camera;
+// 			
+// 			camera.getCamera()
+// 		}
+    </script>
+</head>
+<body>
+	<h1>摄像头测试</h1>
+	<button type="button" class="mui-btn mui-btn-success mui-btn-outlined" id="btnCapture">拍照</button>
+	<button type="button" class="mui-btn mui-btn-success mui-btn-outlined" id="btnVideo">录像</button>
+	<div class="mui-slider">
+	  <div class="mui-slider-group">
+		<div class="mui-slider-item"><a href="#"><img src="img/mv1.jpg" /></a></div>
+		<div class="mui-slider-item"><a href="#"><img src="img/mv2.jpg" /></a></div>
+		<div class="mui-slider-item"><a href="#"><img src="img/mv3.jpg" /></a></div>
+	  </div>
+</div>
+</body>
+</html>
