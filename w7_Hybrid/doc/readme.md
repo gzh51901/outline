@@ -43,7 +43,9 @@
 
 ```
 
-
 ## day7-3
 * 定位
     * HTML5新特性：geolocation
+
+* es,cjs,umd
+    import xx from 'xxx'

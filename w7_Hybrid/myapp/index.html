@@ -28,7 +28,24 @@
 				</div>
 			</a>
 		</li>
-		
+		<li class="mui-table-view-cell mui-media" onclick="goto('share')">
+			<a href="javascript:;">
+				<i class="mui-media-object mui-pull-left mui-icon mui-icon-paperplane"></i>
+				<div class="mui-media-body">
+					分享
+					<p class='mui-ellipsis'>分享到微信、朋友圈、QQ、新浪微博</p>
+				</div>
+			</a>
+		</li>
+		<li class="mui-table-view-cell mui-media" onclick="speech()">
+			<a href="javascript:;">
+				<i class="mui-media-object mui-pull-left mui-icon mui-icon-mic"></i>
+				<div class="mui-media-body">
+					语音识别
+					<p class='mui-ellipsis'>搜索、语音转文字</p>
+				</div>
+			</a>
+		</li>
 	</ul>
 	<script src="js/mui.min.js"></script>
 	<script type="text/javascript" charset="utf-8">
@@ -39,9 +56,16 @@
 		mui.plusReady(()=>{
 			window.goto = (page)=>{
 				console.log(page)
-				plus.webview.open(`html/${page}.html`,'pageCamera',{},'slide-in-top')
+				plus.webview.open(`html/${page}.html`,'page'+page,{},'slide-in-top')
 			}
 			
+			
+			window.speech = ()=>{
+				plus.speech.startRecognize( {engine:'iFly',lang:'zh-cn',nbest:3}, (result,...res)=>{
+					console.log(res)
+					plus.nativeUI.alert(result)
+				});
+			}
 		})
 	</script>
 </body>
