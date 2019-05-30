@@ -1,0 +1,128 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.css" rel="stylesheet" />
+		<style>
+			.goods img{width:100%;}
+			.price span{margin:0 5px;color:#f00;}
+			.price span::before{content:'￥';}
+			.goods-info{padding:10px;}
+		</style>
+	</head>
+
+	<body>
+		<div class="mui-content">
+			<div class="goods">
+				<img src="../img/mv1.jpg" </div> <div class="goods-info">
+				<h1>南非美女陪你过六一</h1>
+				<p class="price">
+					<del>1999.00</del>
+					<span>998.00</span>
+				</p>
+				<div class="payments">
+
+				</div>
+			</div>
+
+		</div>
+		<script src="../js/mui.js"></script>
+		<script type="text/javascript">
+			mui.init()
+
+			mui.plusReady(() => {
+				let payments = document.querySelector('.payments');
+				let goodsPrice = document.querySelector('.price span').innerText;
+
+				//plus.payment.getChannels((channels)=>{
+				//	console.log(JSON.stringify(channels));
+				//	pay.innerHTML = channels.map(item=>{
+				//		return `<button class="mui-btn">${item.description}</button>`
+				//	}).join('')
+				//});
+
+				// 服务器接口(后端完成)
+				var pay_url = 'http://demo.dcloud.net.cn/payment/?payid=';
+				let channels = [];
+				
+				window.gotoPay = function(target){
+					let id = target.dataset.id;
+					console.log('id:',id)
+					let pay = channels.filter(item=>item.id==id)[0];
+					
+					//拼接支付接口id
+					pay_url += pay.id;
+					
+					// 判断当前支付服务是否可用
+					if (pay.serviceReady) {
+						// 获取应用程序id
+						var appid = plus.runtime.appid;
+						
+						// 判断客户端
+						if (navigator.userAgent.indexOf('StreamApp') >= 0) {
+							appid = 'Stream';
+						}
+					
+						goodsPrice = Math.random().toFixed(2);
+					
+						//拼接appid与金额
+						pay_url += '&appid=' + appid + '&total=' + 0.1;
+					
+						// 发起请求
+						var xhr = new XMLHttpRequest();
+						xhr.onload = function() {
+							if (xhr.status == 200) {
+								console.log('----- 请求订单成功 -----');
+								console.log(xhr.responseText);
+								var order = xhr.responseText;
+					
+								// 进入支付页面
+								plus.payment.request(pay, order, function(result) {
+									console.log('----- 支付成功 -----');
+									console.log(result);
+									plus.nativeUI.alert('支付成功：感谢你的支持，我们会继续努力完善产品。', function() {
+										back();
+									}, '捐赠');
+								}, function(e) {
+									console.log('----- 支付失败 -----');
+									console.log('[' + e.code + ']：' + e.message);
+									plus.nativeUI.alert(
+										'更多错误信息请参考支付(Payment)规范文档：http://www.html5plus.org/#specification#/specification/Payment.html',
+										null, '支付失败：' + e.code);
+								});
+					
+							} else {
+								console.log('----- 请求订单失败 -----');
+								console.log(xhr.status);
+								plus.nativeUI.alert('获取订单信息失败！', null, '捐赠');
+							}
+						}
+						xhr.open('GET', pay_url, true);
+						xhr.send();
+						console.log('请求支付订单：' + pay_url);
+					
+					}
+				}
+
+				// 获取支付通道
+				plus.payment.getChannels(cls => {
+					console.log('chennels:'+JSON.stringify(cls));
+					channels = cls;
+					
+					payments.innerHTML = channels.map(item=>{
+						return '<button class="mui-btn" data-id="'+item.id+'" onclick="gotoPay(this)">'+item.description+'</button>';
+					}).join('');
+					
+					
+
+					
+				});
+
+			})
+		</script>
+	</body>
+
+</html>

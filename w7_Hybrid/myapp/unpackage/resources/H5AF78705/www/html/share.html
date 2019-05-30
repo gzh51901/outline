@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>分享</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.css" rel="stylesheet" />
+		
+		
+	</head>
+
+	<body>
+		<h1>分享</h1>
+		<button onclick="sshare()">系统分享</button>
+		<script src="../js/mui.js"></script>
+		<script type="text/javascript">
+			mui.plusReady(()=>{
+				mui.init();
+				 // plus.nativeUI.alert('分享', ()=>{
+					//  
+				 // }, '是否分享', 'ok');
+				 // plus.nativeUI.confirm('确认删除这条数据吗', (e)=>{
+				 // 	console.log(e.index) 
+				 // },{
+					//  buttons:['ok','cancel']
+				 // });
+				 
+				 // plus.nativeUI.toast('加载成功！');
+				 // plus.nativeUI.showWaiting('loading');
+				 // setTimeout(()=>{
+					//  plus.nativeUI.closeWaiting();
+				 // },3000)
+				 plus.share.getServices((services)=>{
+					 // 设置菜单选项
+					 var actionbuttons = services.map(item=>({
+						 title:item.description,
+					 }))
+					 
+					var actionstyle={title:"分享到",cancel:"cancel",buttons:actionbuttons};
+					 plus.nativeUI.actionSheet(actionstyle, e=>{
+						 let currentService = services[e.index-1];
+						 share(currentService)
+					})
+				 });
+				 
+				 
+				 
+				 function share(s){
+					 // 如果未授权,则请求权限
+					 if(!s.authenticated){
+					 	s.authorize((s)=>{
+					 		console.log("认证完成！");
+							// send必须发送ShareMessage对象
+							s.send({
+								type:'text',
+								pictures:['http://e.hiphotos.baidu.com/image/h%3D300/sign=a9e671b9a551f3dedcb2bf64a4eff0ec/4610b912c8fcc3cef70d70409845d688d53f20f7.jpg'],
+								content:'5000一遇美女'
+							})
+					 	}, function(e){
+					 		console.log("未进行认证");
+					 	});
+				
+					 }else{
+						 console.log('分享到'+s.description);
+						 s.send({
+						 	type:'web',
+							title:'震惊！关晓彤与不知名女子...',
+						 	thumbs:['https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2843024029,603611408&fm=26&gp=0.jpg','http://e.hiphotos.baidu.com/image/h%3D300/sign=a9e671b9a551f3dedcb2bf64a4eff0ec/4610b912c8fcc3cef70d70409845d688d53f20f7.jpg'],
+						 	content:'5000一遇美女',
+							href:'https://www.qq.com'
+						 })
+					 }
+				 }
+				 
+				 
+				 window.sshare = ()=>{
+					 plus.share.sendWithSystem({
+						 type:'image',
+						 pictures:['https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=76054086,3386311231&fm=173&s=AA686B929CFE35884D38ACC40300D0A2&w=640&h=360&img.JPEG'],
+					 }, ()=>{
+						 
+					 });
+				 }
+			});
+		</script>
+	</body>
+
+</html>

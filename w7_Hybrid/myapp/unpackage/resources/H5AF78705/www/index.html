@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>h5+ API演示</title>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    
+</head>
+<body>
+	<h1>h5+ API演示</h1>
+	<ul class="mui-table-view">
+		<li class="mui-table-view-cell mui-media" onclick="goto('camera')">
+			<a href="javascript:;">
+				<i class="mui-media-object mui-pull-left mui-icon mui-icon-camera"></i>
+				<div class="mui-media-body">
+					摄像头
+					<p class='mui-ellipsis'>拍照、录像、扫码</p>
+				</div>
+			</a>
+		</li>
+		<li class="mui-table-view-cell mui-media" onclick="goto('map')">
+			<a href="javascript:;">
+				<i class="mui-media-object mui-pull-left mui-icon mui-icon-location"></i>
+				<div class="mui-media-body">
+					定位
+					<p class='mui-ellipsis'>地图、记录当前位置</p>
+				</div>
+			</a>
+		</li>
+		<li class="mui-table-view-cell mui-media" onclick="goto('share')">
+			<a href="javascript:;">
+				<i class="mui-media-object mui-pull-left mui-icon mui-icon-paperplane"></i>
+				<div class="mui-media-body">
+					分享
+					<p class='mui-ellipsis'>分享到微信、朋友圈、QQ、新浪微博</p>
+				</div>
+			</a>
+		</li>
+		<li class="mui-table-view-cell mui-media" onclick="speech()">
+			<a href="javascript:;">
+				<i class="mui-media-object mui-pull-left mui-icon mui-icon-mic"></i>
+				<div class="mui-media-body">
+					语音识别
+					<p class='mui-ellipsis'>搜索、语音转文字</p>
+				</div>
+			</a>
+		</li>
+		<li class="mui-table-view-cell mui-media" onclick="goto('payment')">
+			<span class="mui-media-object mui-pull-left mui-icon mui-icon-pengyouquan"></span>
+			<div class="mui-media-body">
+				支付
+				<p class='mui-ellipsis'>微信、支付宝</p>
+			</div>
+		</li>
+	</ul>
+	<script src="js/mui.min.js"></script>
+	<script type="text/javascript" charset="utf-8">
+		console.log('ok')
+		// 要调用h5+Api,必须等待plusready执行时才可调用
+		// 两种操作方式: mui.plusReady()
+		// document.onplusready = ()=>{}
+		mui.plusReady(()=>{
+			window.goto = (page)=>{
+				console.log(page)
+				plus.webview.open(`html/${page}.html`,'page'+page,{},'slide-in-top')
+			}
+			
+			
+			window.speech = ()=>{
+				plus.speech.startRecognize( {engine:'iFly',lang:'zh-cn',nbest:3}, (result,...res)=>{
+					console.log(res)
+					plus.nativeUI.alert(result)
+				});
+			}
+		})
+	</script>
+</body>
+</html>
