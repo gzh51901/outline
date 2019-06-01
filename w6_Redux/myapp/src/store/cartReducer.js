@@ -1,7 +1,7 @@
 import {ADD_TO_CART,REMOVE_FROM_CART,CHANGE_QTY} from '../acions/cart';
 
 let defaultState = {
-    goodslist:[],
+    goodslist:[{},{},{}],
     totalPrice:0
 }
 const reducer = (state=defaultState,{type,payload})=>{console.log('payload:',payload)

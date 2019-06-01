@@ -7,9 +7,65 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import {Platform, StyleSheet, Text, View,Button} from 'react-native';
 
-import MyModal from './components/Modal';
+import MyRouter from './routers';
+// // import {createAppContainer, createStackNavigator} from 'react-navigation';
+
+// // class HomeScreen extends Component {
+// //     render() {
+// //       return (
+// //         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+// //           <Text>Home Screen123321</Text>
+// //           <Button onPress={()=>this.props.navigation.push('Details')} title="goto详情页"/>
+// //         </View>
+        
+// //       );
+// //     }  
+// // }
+
+// // class DetailsScreen extends Component {
+    
+// //     render() {
+// //       return (
+// //         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+// //           <Text>Details Screen</Text>
+// //         </View>
+// //       );
+// //     }  
+// //   }
+
+// //   // 组件静态属性
+// //   DetailsScreen.navigationOptions = {
+// //     title: '商品详情',
+// //     headerRight: (
+// //       <Button
+// //         onPress={() => alert('This is a button!')}
+// //         title="Info"
+// //       />
+// //     )
+// //   };
+
+// let AppNavigator = createStackNavigator({
+//     Home: {
+//       screen: HomeScreen,
+//     },
+//     Details: {
+//       screen: DetailsScreen,
+//     },
+//   }, {
+//     //   初始化路由
+//       initialRouteName: 'Home',
+// });
+
+// let MyRouter = createAppContainer(AppNavigator);
+
+
+// import MyModal from './components/Modal';
+
+
+import {Provider} from 'react-redux';
+import store from './store';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -24,13 +80,10 @@ type Props = {};
 export default class App extends Component<Props> {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={{color:'#58bc58'}}>Hello {username} Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
+      <Provider store={store}>
+        <MyRouter/>
 
-        <MyModal/>
-      </View>
+      </Provider>
     );
   }
 }

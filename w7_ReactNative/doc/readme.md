@@ -50,3 +50,32 @@
 
 ### 复习
     * ReactNative
+        * React
+    * Expo
+
+
+### 面试题
+* webpack打包后的路径： /img/xxx.jpg
+    * publicPath:'./'
+    * index.html
+    * -> Hybrid
+    * -> webServer
+
+* React: hashRouter -> BrowserRouter
+* Vue: mode:hash -> history
+
+### 知识点
+* 组建通讯
+    * ReactNative 中使用redux
+
+* MobX    VS    VueX
+    
+    VueX:    state      getters                   mutations       actions
+
+    MobX:    state      computedValues            actions         reactions
+
+    Redux: 
+        Reducer=>state 返回一个新的状态（）
+        immutable.js
+            * 方便
+            * 高效
