@@ -29,7 +29,8 @@ React Native (简称RN)是Facebook于2015年4月开源的跨平台移动应用�
             * -> 28.0.3（React Native 所必须的版本）
     * 配置 ANDROID_HOME 环境变量
         > c:\Users\你的用户名\AppData\Local\Android\Sdk
-        > 设置%ANDROID_HOME%到path
+
+        > 设置%ANDROID_HOME%/到path
 
 > PS：安装以上工具尽量使用稳定的翻墙工具，否则在下载、安装、配置过程中会不断遭遇链接超时或断开，导致无法安装的情况
 
