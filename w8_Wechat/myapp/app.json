@@ -1,12 +1,28 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/cart/cart",
+    "pages/list/list"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
+  "window": {
+    "backgroundColor":"rgba(0,0,0,0.1)",
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#58bc58",
     "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle": "white",
+    "enablePullDownRefresh":true
+  },
+  "tabBar":{
+    "list":[{
+      "pagePath":"pages/index/index",
+      "text":"首页"
+    },{
+      "pagePath": "pages/cart/cart",
+      "text": "购物车"
+    }],
+    "position":"bottom",
+    "backgroundColor":"#58bc58",
+    "color":"#fff"
   }
 }
