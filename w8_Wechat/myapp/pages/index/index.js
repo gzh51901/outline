@@ -1,6 +1,7 @@
 //index.js
 //获取应用实例
-const app = getApp()
+const app = getApp(true);
+
 
 Page({
   data: {
@@ -16,6 +17,7 @@ Page({
     })
   },
   onLoad: function () {
+    console.log('window')
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -43,6 +45,12 @@ Page({
       })
     }
   },
+  goto(e){
+    console.log(e)
+    wx.reLaunch({
+      url: '/pages/cart/cart',
+    })
+  },
   getUserInfo: function(e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
@@ -50,5 +58,8 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
+  },
+  onShow(){
+    console.log('show:::')
   }
 })

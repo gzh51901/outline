@@ -10,4 +10,9 @@
   <view class="usermotto">
     <text class="user-motto">{{motto}}</text>
   </view>
+ 
+    <!-- <navigator url="/pages/cart/cart" open-type='reLaunch'> -->
+    <button bindtap="goto" data-id='123'>购物车 </button>
+    <!-- </navigator> -->
+ 
 </view>

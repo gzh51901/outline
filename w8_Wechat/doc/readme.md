@@ -56,4 +56,8 @@
     ```xml
 
         <view>{{message}}</view>
+
+        <view wx:for="{{array}}" wx:for-item="it" wx:for-index="idx">{{item}} - {{index}}</view>
     ```
+
+## day 8-2
