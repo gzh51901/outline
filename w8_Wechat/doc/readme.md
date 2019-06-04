@@ -54,10 +54,72 @@
     * json配置文件
     * wxml布局文件
     ```xml
-
         <view>{{message}}</view>
 
         <view wx:for="{{array}}" wx:for-item="it" wx:for-index="idx">{{item}} - {{index}}</view>
     ```
 
 ## day 8-2
+
+### 复习
+* 小程序
+    * 文件类型
+        * json  配置
+        * js    逻辑
+        * wxss  样式
+        * wxml  布局/模板
+        * wxs   模块化
+        ```
+            <wxs module="xxx">
+                var a = 100
+
+                module.exports = {
+                    a
+                }
+            </wxs>
+            <wxs>
+                let {a} = require('./')
+                var a = 200
+            </wxs>
+
+            <view>{{xxx.a}}</view>
+            let username = 'xxxx'
+            let person = {username:username}
+            {{person}}
+
+            {{{username}}}
+        ```
+
+        ```js
+
+            if(xx) 
+            username='xxxx'
+            
+            let i = 0,j=0
+
+            for(;i<5,j<10;)
+                i++
+
+        ```
+
+### 面试题
+* 如何实现原型链继承
+    * 属性访问规则
+
+    ```js
+        Object.prototype
+
+        Person.prototype.getData = ()=>{}
+
+        Student.prototype = new Person();
+
+        let obj = new Student();
+
+        obj.getData();
+
+
+        // 以obj作为原型对象常见一个对象
+        Object.create(obj)
+    ```
+
+    

@@ -1,18 +1,35 @@
+<import src="../../template.wxml" />
 <!--index.wxml-->
 <view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
+  <!-- 轮播图 -->
+  <swiper indicator-dots="{{true}}" autoplay="{{true}}">
+    <navigator wx:for="{{recommends}}" wx:key="song_id" url="/pages/details/details?id={{item.song_id}}">
+      <swiper-item>
+        <image src="{{item.pic_s500}}" class="slide-image" />
+      </swiper-item>
+    </navigator>
+  </swiper>
+
+  <!-- tab标签切换 -->
+  <!-- tab标签 -->
+  <view class="weui-tab">
+    <view class="weui-navbar">
+      <!-- 标题 -->
+      <view wx:for="{{tabs}}" wx:key="type" data-idx="{{index}}" data-type="{{item.type}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bind:tap="changeTab">
+        <view class="weui-navbar__title">{{item.text}}</view>
+      </view>
+
+      <!-- 绿色线条 -->
+      <view class="weui-navbar__slider" style="width: {{tabWidth}}px; transform: translateX({{sliderOffset}}px); "></view>
+    </view>
+    <view class="weui-tab__panel">
+      <!-- 内容 -->
+      <view wx:for="{{tabs}}" wx:key="type" class="weui-tab__content" hidden="{{activeIndex != index}}">
+        <template is="list" data="{{datalist:tabData[item.type]}}" />
+        <template is="more" data="{{type:item.type}}" />
+      </view>
+    </view>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
- 
-    <!-- <navigator url="/pages/cart/cart" open-type='reLaunch'> -->
-    <button bindtap="goto" data-id='123'>购物车 </button>
-    <!-- </navigator> -->
- 
+  <template is="panel" data="{{title:'热门歌曲',datalist:list_hot,type:2}}" />
+  <template is="panel" data="{{title:'最新歌曲',datalist:list_new,type:1}}" />
 </view>
