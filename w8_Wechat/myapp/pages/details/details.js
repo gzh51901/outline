@@ -58,7 +58,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: async function ({id:songid}) {
-    songid = 614044521;
+    // songid = 614044521;
 
     let data = await api.getData({
       method:'baidu.ting.song.play',
