@@ -35,7 +35,11 @@ App({
       return new Promise((resolve,reject)=>{
         wx.request({
           url:this.baseURL,
-          data,
+          data:{
+            method:'baidu.ting.billboard.billList',
+            offset: 0,
+            ...data
+          },
           success({data}) {
             resolve(data);
           },

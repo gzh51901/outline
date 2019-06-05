@@ -37,10 +37,8 @@ Page({
 
   async getTabData(type,size=3){
     let data = await app.api.getData({
-      method: 'baidu.ting.billboard.billList',
       type,
-      size,
-      offset: 0
+      size
     });
 
     let tabData = this.data.tabData;
@@ -80,16 +78,12 @@ Page({
 
     // 新歌与热歌
     let {song_list:list_new} = await app.api.getData({
-      method: 'baidu.ting.billboard.billList',
       type:1,
-      size:5,
-      offset: 0
+      size:5
     });
     let { song_list: list_hot } = await app.api.getData({
-      method: 'baidu.ting.billboard.billList',
       type: 2,
-      size: 5,
-      offset: 0
+      size: 5
     });
 
     let recommends = [...list_hot.slice(0,2),...list_new.slice(0,2)]

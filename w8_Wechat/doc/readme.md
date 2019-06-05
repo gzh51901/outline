@@ -122,4 +122,42 @@
         Object.create(obj)
     ```
 
+
+## day8-3
+
+### 面试题
+
+* 什么叫纯函数（不会产生副作用）
+    * 函数式编程
+    * 模块化/组件化
+* 如何快速找到一个数组中的最大值
+    arr = [10,6,12,3,6,31,21]
+    * Math.max()
+    Math.max.apply(null,arr)
+
+    Array.prototype.forEach.call(btns,function(item){})
+    btns.forEach()
+
+* 经典面试题
+```js
+    function Foo(){
+        getName = function(){alert(1+'1')}
+        return this;
+    }
+
+    Foo.getName = function(){alert(typeof null)}
+    Foo.prototype.getName = function(){alert(NaN===NaN)}
+    var getName = function(){alert(parseInt('1234S'))}
+    function getName(){alert(4&&5)}
+
+    
+    Foo.getName();
+    getName();
+    Foo().getName();
+    getName();
+    new Foo.getName();
+    new Foo().getName();
+    new new Foo().getName();
+
+```
     
