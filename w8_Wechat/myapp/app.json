@@ -1,10 +1,10 @@
 {
   "pages": [
+    "pages/details/details",
     "pages/index/index",
     "pages/list/list",
     "pages/logs/logs",
-    "pages/cart/cart",
-    "pages/details/details"
+    "pages/cart/cart"
   ],
   "window": {
     "backgroundColor":"rgba(0,0,0,0.1)",

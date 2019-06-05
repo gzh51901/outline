@@ -1,1 +1,6 @@
-/* pages/details/details.wxss */
+.details{padding:8px;}
+.details image{width: 100%;}
+.player{position: relative;}
+.player .icon{position:absolute;left:50%;top:50%;transform: translate(-50%,-50%);
+background:no-repeat center;
+}
