@@ -1,0 +1,5 @@
+<camera device-position="back" flash="off" binderror="error" style="width: 750rpx; height: 1334rpx;"></camera>
+<view class="btns">
+  <button type="primary" bindtap="takePhoto">拍照</button>
+  <button type="primary" bindtap="takeVideo">{{startVideo?'停止录像':'开始录像'}}</button>
+</view>

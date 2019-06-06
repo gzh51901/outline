@@ -151,13 +151,30 @@
     function getName(){alert(4&&5)}
 
     
-    Foo.getName();
-    getName();
-    Foo().getName();
-    getName();
-    new Foo.getName();
-    new Foo().getName();
-    new new Foo().getName();
+    Foo.getName();  //object : typeof与静态方法
+    getName();      // 1234  : 声明提前，&&短路用法，细心
+    Foo().getName();// '11'  : 细心，this指向
+    getName();      // '11'  : 同上
+    new Foo.getName(); //object: 运算符优先级
+    new Foo().getName();//false: 原型对象，优先级
+    new new Foo().getName();//false: =>对象
 
 ```
+
+### 知识点
+* offset的计算
+
+    size:10
+    pageNo          offset
+    1               0
+    2               10
+    3               20
+    ...
+
+    推导公式：offset = (pageNo-1)*size
+
+
+## day8-4
+
+
     

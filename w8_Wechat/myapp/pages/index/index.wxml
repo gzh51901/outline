@@ -3,12 +3,24 @@
 <view class="container">
   <!-- 轮播图 -->
   <swiper indicator-dots="{{true}}" autoplay="{{true}}">
-    <navigator wx:for="{{recommends}}" wx:key="song_id" url="/pages/details/details?id={{item.song_id}}">
-      <swiper-item>
+    <!-- <navigator wx:for="{{recommends}}" wx:key="song_id" url="/pages/details/details?id={{item.song_id}}"> -->
+      <swiper-item wx:for="{{recommends}}" wx:key="song_id" bindtap="goto" data-url="/pages/details/details?id={{item.song_id}}">
         <image src="{{item.pic_s500}}" class="slide-image" />
       </swiper-item>
-    </navigator>
+    <!-- </navigator> -->
   </swiper>
+
+  <!-- 搜索 -->
+<view class="weui-search-bar__form" bindtap="goto" data-url="/pages/search/search?keyword={{keyword}}">
+  <view class="weui-search-bar__box">
+      <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+      <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{keyword}}" />
+  </view>
+  <label class="weui-search-bar__label">
+      <icon class="weui-icon-search" type="search" size="14"></icon>
+      <view class="weui-search-bar__text">{{keyword}}</view>
+  </label>
+</view>
 
   <!-- tab标签切换 -->
   <!-- tab标签 -->
@@ -32,4 +44,9 @@
   </view>
   <template is="panel" data="{{title:'热门歌曲',datalist:list_hot,type:2}}" />
   <template is="panel" data="{{title:'最新歌曲',datalist:list_new,type:1}}" />
+</view>
+
+<view>
+  <button bindtap="getCamera">摄像头</button>
+  <button bindtap="takePhoto">拍照</button>
 </view>
