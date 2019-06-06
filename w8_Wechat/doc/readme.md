@@ -176,5 +176,58 @@
 
 ## day8-4
 
+* 隐式转换
+> js内部的隐式转换过程：如果当前数据有valueOf()方法，则调用valueOf()的返回值作为隐式转换的值，否则调用toString()方法的返回值作为隐式转换的值
+```js
+    true+1;//2  true隐式转换成1
+```
 
-    
+f(1) = 1
+f(1)(2) = 2
+f(1)(2)(3) = 6
+f(1)(2)(3)(4) = 24;
+
+函数柯里化
+
+function f(a){
+    // a:6
+    const temp = function(b){
+        // 4
+        return f(b*a)
+    }
+
+    // 修改toString方法让其按照我们的意愿进行隐式转换
+    temp.toString = function(){
+        return a;
+    }
+
+    return temp
+}
+
+let f = a=>Object.assign(b=>f(b*a),{toString:()=>a})
+
+
+
+-------------------------------
+
+f(1)
+f(2)(1)
+f(3)(2)(1);
+
+function f(a){
+    if(a<=1) return 1;
+    return a*f(a-1)
+}
+
+## 小程序开发框架
+* mpvue(mini program in vue)     美团
+    * 利用Vue开发小程序
+* wepy                           腾讯
+    * 类似Vue的开发模式
+
+原理：
+    .vue  -> wxml,wxss,js
+
+
+{{arr.sort().slice()}}
+computed

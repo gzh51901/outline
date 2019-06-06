@@ -175,5 +175,17 @@ Page({
     })
     
 
+  },
+  
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function (res) {
+    // 关键是：思路
+    return {
+      title:"点我有惊喜",
+      path:"/pages/search/search?keyword=are you ok",
+      imageUrl:'/img/0-9number.jpg'
+    }
   }
 })
