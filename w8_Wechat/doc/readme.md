@@ -231,3 +231,37 @@ function f(a){
 
 {{arr.sort().slice()}}
 computed
+
+* 假期练习
+    * 开发一个小程序
+    * 注册一个公众号
+
+
+## day9-1
+* 微信开发（微信公众平台）
+    * 小程序
+    * 公众号
+        * 与普通web开发一致
+        * 调用jssdk(一个js文件)
+            > http://res.wx.qq.com/open/js/jweixin-1.4.0.js
+        * 开发测试账号：https://mp.weixin.qq.com/debug/cgi-bin/sandboxinfo?action=showinfo&t=sandbox/index
+
+* canvas    画布
+    * <canvas width="500" height="200" id="myCanvas"></canvas>
+        * myCanvas.width = 300;
+    * 通过js调用内部接口（js）
+    * 注意事项
+        * 不能使用css设置宽高
+        * 位图（放大会失真） VS 矢量图（随意放大） 
+            * 扁平化设计
+            * 双倍图
+            
+
+    * 用途
+        * 游戏：
+            * flash + as(ActionScript)
+            * canvas + js(javascript)
+        * 数据可视化
+            * echarts    canvas
+            * hichart    svg
+        * 广告
