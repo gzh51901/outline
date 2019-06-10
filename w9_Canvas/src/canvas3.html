@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Canvas图片</title>
+    <style>
+        #myCanvas{border:1px solid #666;}
+    </style>
+</head>
+<body>
+    <h1>Canvas图片</h1>
+    <canvas id="myCanvas">
+        你的浏览器不支持canvas，赶紧换一个吧
+    </canvas>
+    <script>
+        (()=>{
+            let myCanvas = document.querySelector('#myCanvas');
+
+            // 设置宽高
+            myCanvas.width = 800;
+            myCanvas.height = 500;
+
+            let ctx = myCanvas.getContext('2d');
+
+            let img = new Image();
+            img.src = 'img/mv3.jpg';
+
+            // 绘制图片
+            if(img.complete){
+                ctx.drawImage(img,10,10);
+            }else{
+                img.onload = function(){
+                    // 原样绘制
+                    ctx.drawImage(img,10,10);
+
+                    // 设置图片大小
+                    // 绘制图片宽高：一定是 等比例缩放
+                    let w = 180;
+                    let h = w*img.height/img.width;
+                    ctx.drawImage(img,340,10,w,h);
+
+
+                    // 剪裁图片
+                    console.log(w/2,h/2,0,180,100,100)
+                    // ctx.drawImage(img,530,10,320,320,60,80,50,50);
+                    ctx.drawImage(img,0,160,150,150,530,10,80,80);
+                }
+            }
+
+
+ 
+
+            
+
+        })();
+    </script>
+</body>
+</html>

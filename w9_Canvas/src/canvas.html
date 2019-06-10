@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Canvas</title>
+    <style>
+        #myCanvas{border:1px solid #666;}
+    </style>
+</head>
+<body>
+    <h1>Canvas</h1>
+    <canvas id="myCanvas">
+        你的浏览器不支持canvas，赶紧换一个吧
+    </canvas>
+    <script>
+        (()=>{
+            let myCanvas = document.querySelector('#myCanvas');
+
+            // 设置宽高
+            myCanvas.width = 500;
+            myCanvas.height = 300;
+
+            let ctx = myCanvas.getContext('2d');
+
+            console.log(ctx);
+
+            // 设置线条样式
+            ctx.lineWidth = 10;
+
+            // 设置填充样式
+            ctx.fillStyle = '#ff0';
+
+            // 设置起始位置
+            ctx.moveTo(10,10)
+
+            ctx.lineTo(200,100);
+            ctx.lineTo(250,100);
+            ctx.lineTo(250,200);
+
+            // 闭合路径
+            ctx.closePath();
+
+            ctx.stroke();
+            ctx.fill();
+
+
+            // 开启一个新的状态
+            ctx.beginPath();
+
+            // 利用线画矩形
+            ctx.moveTo(300,10)
+            ctx.lineTo(350,10);
+            ctx.lineTo(350,60);
+            ctx.lineTo(300,60);
+            ctx.closePath();
+
+            ctx.strokeStyle = '#f00';
+            ctx.stroke();
+
+            // 矩形
+            ctx.beginPath();
+            ctx.fillStyle = '#f0f';
+            ctx.rect(300,100,100,50);
+            ctx.fill();
+
+
+            // 画圆
+            // ctx.arc(x,y,r,sr,er,counterclockwise)
+            // counterclockwise:是否逆时针（默认:false）
+
+            ctx.beginPath();
+            ctx.lineWidth = 5;
+            ctx.moveTo(250,150);
+            ctx.lineTo(330,150);
+            ctx.arc(250,150,80,0,60*Math.PI/180);
+            ctx.lineTo(250,150);
+            ctx.stroke();
+            ctx.fill();
+        })();
+    </script>
+</body>
+</html>

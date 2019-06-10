@@ -140,9 +140,9 @@ x, y是矩形左上角坐标， width和height都是以像素计（下同）
 #### 方法
 * fillText(text,x,y)    填充字体
 * strokeText(text,x,y)  描边字体
+    * x,y：绘制文字起始坐标
 * measureText(text) 检测字体宽度,返回包含指定文本宽度的对象
     * text:文本
-    * x,y：绘制文字起始坐标
 
 
 ### 绘制图片
