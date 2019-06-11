@@ -298,6 +298,20 @@ rotate(radian) 方法旋转当前的绘图，注意参数是弧度
     var dataURL = canvas.toDataURL();
     var img = document.querySelector("img");
     img.src = canvas.toDataURL("image/png");//将画布的内容赋值给图片的src属性
+
+
+    // 下载
+    // 下载后的问题名
+    var filename = 'xxx' + Date.now() + '.png';
+    // 创建a标签用于下载图片（必须有download属性）
+    var save_link = document.createElement( 'a');
+    save_link.href = dataURL;
+    save_link.download = filename;
+    
+    // 自定义事件
+    var event = document.createEvent('MouseEvents');
+    event.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+    save_link.dispatchEvent(event);
 ```
 
 
